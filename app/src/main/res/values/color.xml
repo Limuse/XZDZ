@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="app_toolbar">#00796b</color>
+    <color name="app_toolbar_ben">#55cccccc</color>
+    <color name="app_bottom">#f8f8f8</color>
+    <color name="app_viewcard">#dcdcdc</color>
+    <color name="app_background">#f2f2f2</color>
+    <color name="app_press">#55bababa</color>
+    <color name="app_toolbar_press">#1a000000</color>
+    <color name="app_text">#59596c</color>
+    <color name="app_text_press">#8c8c8c</color>
+    <color name="app_white">#ffffffff</color>
+    <color name="app_btn_p">#ff5722</color>
+    <color name="app_btn_n">#1a000000</color>
+    <color name="app_offline">#F5F5F5</color>
+    <color name="app_green">#08bdb7</color>
+    <color name="app_greenfull_press">#03b0aa</color>
+    <color name="app_greenline_press">#e4f8f7</color>
+    <color name="app_orange">#ff4400</color>
+    <color name="app_orangefull_press">#ee3f00</color>
+    <color name="app_orangeline_press">#fbe5ce</color>
+    <color name="app_grayline_press">#f8f8f8</color>
+    <color name="app_gra">#00000000</color>
+    <color name="app_line">#dcdcdc</color>
+    <color name="app_text_dark">#333333</color>
+    <color name="app_text_light">#8a8a8a</color>
+    <color name="app_conp_text">#b3b3b3</color>
+</resources>

@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/app_background"
+    android:orientation="vertical">
+
+    <include layout="@layout/toolbar_margin"></include>
+
+    <com.huihao.custom.MtScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/et_user"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp"
+                android:background="@mipmap/login_line"
+                android:drawableLeft="@mipmap/login_user"
+                android:drawablePadding="8dp"
+                android:hint="请输入手机号"
+                android:maxLength="30"
+                android:paddingLeft="4dp"
+                android:paddingRight="8dp"
+                android:phoneNumber="true"
+                android:singleLine="true"
+                android:textColor="@color/app_white"
+                android:textColorHint="#80ffffff" />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/et_code"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginRight="24dp"
+                    android:background="@mipmap/login_line"
+                    android:drawableLeft="@mipmap/login_code"
+                    android:drawablePadding="8dp"
+                    android:hint="请输入验证码"
+                    android:maxLength="6"
+                    android:paddingLeft="4dp"
+                    android:paddingRight="48dp"
+                    android:phoneNumber="true"
+                    android:singleLine="true"
+                    android:textColor="@color/app_white"
+                    android:textColorHint="#80ffffff" />
+
+
+                <RelativeLayout
+                    android:layout_width="108dp"
+                    android:layout_height="48dp"
+                    android:layout_alignRight="@+id/et_code"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="4dp"
+                    android:clickable="true">
+
+                    <Button
+                        android:id="@+id/btn_send1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_centerInParent="true"
+                        android:background="@null"
+                        android:clickable="false"
+                        android:focusable="false"
+                        android:focusableInTouchMode="false"
+                        android:text="发送验证码"
+                        android:textColor="@color/app_white"
+                        android:textSize="@dimen/app_text_big" />
+
+                    <Button
+                        android:id="@+id/btn_send2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@null"
+                        android:onClick="send" />
+
+                </RelativeLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/et_pwd"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginRight="24dp"
+                    android:background="@mipmap/login_line"
+                    android:drawableLeft="@mipmap/login_pwd"
+                    android:drawablePadding="8dp"
+                    android:hint="请设置密码"
+                    android:maxLength="30"
+                    android:paddingLeft="4dp"
+                    android:paddingRight="48dp"
+                    android:password="true"
+                    android:singleLine="true"
+                    android:textColor="@color/app_white"
+                    android:textColorHint="#80ffffff" />
+
+
+                <RelativeLayout
+                    android:layout_width="36dp"
+                    android:layout_height="48dp"
+                    android:layout_alignRight="@+id/et_pwd"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="4dp"
+                    android:clickable="true">
+
+                    <Button
+                        android:id="@+id/btn_look"
+                        android:layout_width="20dp"
+                        android:layout_height="14dp"
+                        android:layout_centerInParent="true"
+                        android:background="@mipmap/login_look"
+                        android:clickable="false"
+                        android:focusable="false"
+                        android:focusableInTouchMode="false" />
+
+                    <Button
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@null"
+                        android:onClick="eye" />
+
+                </RelativeLayout>
+            </RelativeLayout>
+
+            <Button
+                android:id="@+id/btn_ok"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp"
+                android:layout_marginTop="36dp"
+                android:background="@drawable/btn_login"
+                android:onClick="ok"
+                android:text="注册"
+                android:textColor="@color/app_green"
+                android:textSize="20sp" />
+        </LinearLayout>
+    </com.huihao.custom.MtScrollView>
+</LinearLayout>
