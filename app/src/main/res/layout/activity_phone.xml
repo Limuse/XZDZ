@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/app_background"
+    android:orientation="vertical">
+
+    <include layout="@layout/toolbar" />
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/app_lycard"
+        android:background="@color/app_background" />
+
+
+    <RelativeLayout
+        android:id="@+id/rl_phoness"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/app_toolbar"
+        android:background="@drawable/btn_press"
+        android:clickable="true">
+
+
+        <TextView
+            android:id="@+id/tv_bbb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/app_myself_left_mar"
+            android:text="已绑定手机"
+            android:textColor="@color/app_text_dark"
+            android:textSize="@dimen/app_myself_tex" />
+
+        <TextView
+            android:id="@+id/tv_phoness"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:text="123455678"
+            android:textSize="@dimen/app_myself_tex"
+            android:layout_marginRight="@dimen/app_myself_left_mar"
+             />
+    </RelativeLayout>
+</LinearLayout>

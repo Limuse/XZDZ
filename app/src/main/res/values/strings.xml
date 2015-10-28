@@ -14,5 +14,8 @@
     <string name="app_myredm">我的红包</string>
     <string name="app_set">设置</string>
     <string name="write">编辑</string>
+    <string name="app_updatepwd">修改密码</string>
+    <string name="app_buildemail">绑定邮箱</string>
+    <string name="app_phones">绑定手机</string>
     <string name="app_service_url">http://afantiwfx.cn/</string>
 </resources>

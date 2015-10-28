@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/app_background"
+    android:orientation="vertical">
+
+    <include layout="@layout/toolbar" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/app_white"
+        android:orientation="vertical">
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/app_lycard"
+            android:background="@color/app_background" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/app_toolbar"
+            android:background="@color/app_white"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/et_ps"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/app_toolbar"
+                android:layout_marginLeft="@dimen/app_myself_left_mar"
+                android:background="@android:color/transparent"
+                android:hint="请输入登录密码"
+                android:maxLength="10"
+                android:textSize="@dimen/app_text_normal" />
+
+            <RelativeLayout
+                android:id="@+id/rl_oldsee"
+                android:layout_width="48dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true">
+
+                <Button
+                    android:id="@+id/btn_oldsee"
+                    android:layout_width="32dp"
+                    android:layout_height="16dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerInParent="true"
+                    android:layout_marginRight="@dimen/app_myself_left_mar"
+                    android:background="@mipmap/eyes"
+                    android:textSize="@dimen/app_text_normal" />
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerInParent="true"
+                    android:background="@null"
+                    android:onClick="oldssee" />
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginLeft="@dimen/app_myself_left_mar"
+            android:background="@color/app_background" />
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/et_codes"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:background="@mipmap/login_line"
+                android:hint="获取验证码"
+                android:maxLength="6"
+                android:paddingLeft="@dimen/app_myself_left_mar"
+                android:paddingRight="48dp"
+                android:phoneNumber="true"
+                android:singleLine="true"
+                android:textSize="@dimen/app_text_normal" />
+
+
+            <RelativeLayout
+                android:layout_width="100dp"
+                android:layout_height="48dp"
+                android:layout_alignRight="@+id/et_codes"
+                android:layout_centerVertical="true"
+                android:clickable="true">
+
+
+                <Button
+                    android:id="@+id/btn_send1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_centerInParent="true"
+
+                    android:background="@drawable/btn_press"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    android:text="发送验证码"
+                    android:textSize="@dimen/app_text_big" />
+
+                <View
+                    android:id="@+id/vv"
+                    android:layout_width="0.5dp"
+                    android:layout_height="48dp"
+                    android:background="@color/app_background" />
+
+                <Button
+                    android:id="@+id/btn_send2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="0.5dp"
+                    android:layout_alignRight="@+id/vv"
+                    android:background="@null"
+                    android:onClick="send" />
+
+            </RelativeLayout>
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginLeft="@dimen/app_myself_left_mar"
+            android:background="@color/app_background" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/app_toolbar"
+            android:background="@color/app_white"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/et_p"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/app_toolbar"
+                android:layout_marginLeft="@dimen/app_myself_left_mar"
+                android:background="@android:color/transparent"
+                android:hint="请输入验证码"
+                android:maxLength="10"
+                android:textSize="@dimen/app_text_normal" />
+
+
+        </RelativeLayout>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_save"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginLeft="@dimen/app_myself_left_mar"
+        android:layout_marginRight="@dimen/app_myself_left_mar"
+        android:layout_marginTop="@dimen/app_lycard"
+        android:background="@drawable/btn_save"
+        android:onClick="saves"
+        android:text="保  存"
+        android:textColor="@color/app_white"
+        android:textSize="@dimen/app_text_title" />
+</LinearLayout>

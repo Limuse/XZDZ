@@ -74,6 +74,30 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait"
             />
+        <!--修改密码-->
+        <activity
+            android:name="com.activity.UpdatePwd"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait"
+            />
+        <!--绑定邮箱-->
+        <activity
+            android:name="com.activity.BuildEmail"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait"
+            />
+        <!--绑定手机-->
+        <activity
+            android:name="com.activity.Phone"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait"
+            />
+        <!--更换手机号码-->
+        <activity
+            android:name="com.activity.ChangePhone"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait"
+            />
     </application>
 
 </manifest>
