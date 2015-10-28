@@ -20,6 +20,60 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <!--联系客服-->
+        <activity
+            android:name="com.activity.ContactService"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait"
+            />
+        <!--我的收藏-->
+        <activity
+            android:name="com.activity.MyCollect"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait"
+            />
+        <!--我要定制-->
+        <activity
+            android:name="com.activity.MyCustome"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait"
+            />
+        <!--我的作品-->
+        <activity
+            android:name="com.activity.Myworked"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait"
+            />
+        <!--正在定制-->
+        <activity
+            android:name="com.activity.Customing"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait"
+            />
+        <!--量体数据-->
+        <activity
+            android:name="com.activity.SpecificData"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait"
+            />
+        <!--我的红包-->
+        <activity
+            android:name="com.activity.MyReam"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait"
+            />
+        <!--设置-->
+        <activity
+            android:name="com.activity.Set"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait"
+            />
+        <!--个人资料-->
+        <activity
+            android:name="com.activity.MyInfo"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait"
+            />
     </application>
 
 </manifest>

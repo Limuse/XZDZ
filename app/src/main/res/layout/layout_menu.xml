@@ -48,6 +48,7 @@
             android:orientation="vertical">
 
             <RelativeLayout
+                android:id="@+id/rl1"
                 android:layout_width="match_parent"
                 android:layout_height="56dp">
 
@@ -80,6 +81,7 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/rl2"
                 android:layout_width="match_parent"
                 android:layout_height="56dp">
 
@@ -111,6 +113,7 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/rl3"
                 android:layout_width="match_parent"
                 android:layout_height="56dp">
 
@@ -142,6 +145,7 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/rl4"
                 android:layout_width="match_parent"
                 android:layout_height="56dp">
 
@@ -173,6 +177,7 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/rl5"
                 android:layout_width="match_parent"
                 android:layout_height="56dp">
 
@@ -204,6 +209,7 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/rl6"
                 android:layout_width="match_parent"
                 android:layout_height="56dp">
 
@@ -235,6 +241,7 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/rl7"
                 android:layout_width="match_parent"
                 android:layout_height="56dp">
 
@@ -275,6 +282,7 @@
             android:background="@color/app_line"></View>
 
         <Button
+            android:id="@+id/btn_right"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:layout_toRightOf="@+id/view"
@@ -291,6 +299,7 @@
             android:background="@color/app_line"></View>
 
         <Button
+            android:id="@+id/btn_left"
             android:layout_width="match_parent"
             android:layout_height="48dp"           android:text="个人资料"
             android:layout_toLeftOf="@+id/view"
