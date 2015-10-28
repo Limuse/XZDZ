@@ -15,17 +15,8 @@ import com.nineoldandroids.view.ViewHelper;
 import com.xzdz.R;
 
 public class SlidingMenu extends HorizontalScrollView {
-    /**
-     * 屏幕宽度
-     */
     private int mScreenWidth;
-    /**
-     * dp
-     */
     private int mMenuRightPadding;
-    /**
-     * 菜单的宽度
-     */
     private int mMenuWidth;
     private int mHalfMenuWidth;
 
@@ -53,11 +44,10 @@ public class SlidingMenu extends HorizontalScrollView {
             int attr = a.getIndex(i);
             switch (attr) {
                 case R.styleable.SlidingMenu_rightPadding:
-                    // 默认50
                     mMenuRightPadding = a.getDimensionPixelSize(attr,
                             (int) TypedValue.applyDimension(
                                     TypedValue.COMPLEX_UNIT_DIP, 50f,
-                                    getResources().getDisplayMetrics()));// 默认为10DP
+                                    getResources().getDisplayMetrics()));
                     break;
             }
         }
@@ -70,9 +60,6 @@ public class SlidingMenu extends HorizontalScrollView {
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        /**
-         * 显示的设置一个宽度
-         */
         if (!once) {
             LinearLayout wrapper = (LinearLayout) getChildAt(0);
             mMenu = (ViewGroup) wrapper.getChildAt(0);
@@ -98,7 +85,6 @@ public class SlidingMenu extends HorizontalScrollView {
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
         super.onLayout(changed, l, t, r, b);
         if (changed) {
-            // 将菜单隐藏
             this.scrollTo(mMenuWidth, 0);
             once = true;
         }
@@ -106,27 +92,26 @@ public class SlidingMenu extends HorizontalScrollView {
 
     @Override
     public boolean onTouchEvent(MotionEvent ev) {
-        int action = ev.getAction();
-        switch (action) {
-            // Up时，进行判断，如果显示区域大于菜单宽度一半则完全显示，否则隐藏
-            case MotionEvent.ACTION_UP:
-                int scrollX = getScrollX();
-                if (scrollX > mHalfMenuWidth) {
-                    this.smoothScrollTo(mMenuWidth, 0);
-                    isOpen = false;
-                } else {
-                    this.smoothScrollTo(0, 0);
-                    isOpen = true;
+        if (isOpen) {
+            int action = ev.getAction();
+            switch (action) {
+                case MotionEvent.ACTION_UP:
+                    int scrollX = getScrollX();
+                    if (scrollX > mHalfMenuWidth) {
+                        this.smoothScrollTo(mMenuWidth, 0);
+                        isOpen = false;
+                    } else {
+                        this.smoothScrollTo(0, 0);
+                        isOpen = true;
 
-                }
-                return true;
+                    }
+                    return true;
+            }
+            return super.onTouchEvent(ev);
         }
-        return super.onTouchEvent(ev);
+        return false;
     }
 
-    /**
-     * 打开菜单
-     */
     public void openMenu() {
         if (isOpen)
             return;
@@ -136,9 +121,6 @@ public class SlidingMenu extends HorizontalScrollView {
         mContent.setFocusableInTouchMode(true);
     }
 
-    /**
-     * 关闭菜单
-     */
     public void closeMenu() {
         if (isOpen) {
             this.smoothScrollTo(mMenuWidth, 0);
@@ -148,9 +130,6 @@ public class SlidingMenu extends HorizontalScrollView {
         }
     }
 
-    /**
-     * 切换菜单状态
-     */
     public void toggle() {
         if (isOpen) {
             closeMenu();
@@ -159,22 +138,21 @@ public class SlidingMenu extends HorizontalScrollView {
         }
     }
 
-    @Override
     protected void onScrollChanged(int l, int t, int oldl, int oldt) {
         super.onScrollChanged(l, t, oldl, oldt);
         float scale = l * 1.0f / mMenuWidth;
         float leftScale = 1 - 0.3f * scale;
         float rightScale = 0.8f + scale * 0.2f;
 
-//        ViewHelper.setScaleX(mMenu, leftScale);
-//        ViewHelper.setScaleY(mMenu, leftScale);
-//        ViewHelper.setAlpha(mMenu, 0.6f + 0.4f * (1 - scale));
-//        ViewHelper.setTranslationX(mMenu, mMenuWidth * scale * 0.7f);
-//
-//        ViewHelper.setPivotX(mContent, 0);
-//        ViewHelper.setPivotY(mContent, mContent.getHeight() / 2);
-//        ViewHelper.setScaleX(mContent, rightScale);
-//        ViewHelper.setScaleY(mContent, rightScale);
+        ViewHelper.setScaleX(mMenu, leftScale);
+        ViewHelper.setScaleY(mMenu, leftScale);
+        ViewHelper.setAlpha(mMenu, 0.6f + 0.4f * (1 - scale));
+        ViewHelper.setTranslationX(mMenu, mMenuWidth * scale * 0.7f);
+
+        ViewHelper.setPivotX(mContent, 0);
+        ViewHelper.setPivotY(mContent, mContent.getHeight() / 2);
+        ViewHelper.setScaleX(mContent, rightScale);
+        ViewHelper.setScaleY(mContent, rightScale);
     }
 
 }

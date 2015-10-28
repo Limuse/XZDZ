@@ -9,12 +9,13 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.custom.CircleImageView;
+import com.custom.ImageCycleView;
 import com.custom.SlidingMenu;
 import com.leo.base.activity.LActivity;
 import com.leo.base.util.T;
 import com.xzdz.R;
 
-import org.w3c.dom.Text;
+import java.util.ArrayList;
 
 public class MainActivity extends LActivity implements View.OnClickListener {
 
@@ -25,6 +26,10 @@ public class MainActivity extends LActivity implements View.OnClickListener {
     private TextView tv_name;
     private RelativeLayout rl1,rl2,rl3,rl4,rl5,rl6,rl7;
     private Button btn_right,btn_left;
+
+    private ImageCycleView mAdView;
+    private ArrayList<String> pageImageList = new ArrayList<String>();
+    private ArrayList<String> pageImageId = new ArrayList<String>();
 
     protected void onLCreate(Bundle bundle) {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -38,7 +43,14 @@ public class MainActivity extends LActivity implements View.OnClickListener {
         T.ss("aaaa");
     }
 
-    private void initLayout() {
+    public void initLayout() {
+        pageImageList.add(0,"ssss");
+        pageImageList.add(1,"ssss");   pageImageId.add(0,"ssss");
+        pageImageId.add(1,"ssss");
+        mAdView=(ImageCycleView)findViewById(R.id.ImageCycleView);
+        mAdView.setImageResources(pageImageList, pageImageId, mAdCycleViewListener);
+
+
         rlM = (RelativeLayout) this.findViewById(R.id.my);
         civM=(CircleImageView) this.findViewById(R.id.image_main);
         tv_name=(TextView) this.findViewById(R.id.tv_name);
@@ -120,4 +132,16 @@ public class MainActivity extends LActivity implements View.OnClickListener {
             startActivity(intent);
         }
     }
+
+    public void open(View v){
+        mMenu.toggle();
+    }
+
+
+    private ImageCycleView.ImageCycleViewListener mAdCycleViewListener = new ImageCycleView.ImageCycleViewListener() {
+        public void onImageClick(int position, View imageView) {
+
+        }
+    };
+
 }

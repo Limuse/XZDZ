@@ -3,7 +3,7 @@
     android:id="@+id/id_menu"
     android:layout_width="wrap_content"
     android:layout_height="match_parent"
-    android:background="@color/app_text_dark"
+    android:background="@color/app_toolbar"
     android:scrollbars="none"
     sliding:rightPadding="50dp">
 
@@ -16,19 +16,53 @@
 
         <LinearLayout
             android:id="@+id/main_context"
+            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/app_white">
 
-            <include layout="@layout/toolbar" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_gravity="top"
+                android:background="@color/app_toolbar">
 
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:clickable="false"
-                android:focusable="false"
-                android:onClick="toggleMenu"
-                android:text="sssss" />
+                <Button
+                    android:onClick="open"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="16dp"
+                    android:background="@mipmap/ic_launcher" />
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="杭州 v"
+                        android:textColor="@color/app_white"
+                        android:textSize="20sp" />
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_alignParentBottom="true"
+                    android:background="@color/app_line" />
+            </RelativeLayout>
+
+            <com.custom.ImageCycleView
+                android:id="@+id/ImageCycleView"
+                android:layout_width="match_parent"
+                android:layout_height="240dp" />
+
+
+
         </LinearLayout>
     </LinearLayout>
 
