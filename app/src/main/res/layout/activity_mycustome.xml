@@ -8,17 +8,12 @@
 
     <include layout="@layout/toolbar" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0.5dp"
-        android:background="@color/app_line" />
-
-    <com.huihao.custom.PagerSlidingTabStrip
+    <com.custom.PagerSlidingTabStrip
         android:id="@+id/tab_strip"
         android:layout_width="match_parent"
         android:layout_height="@dimen/app_bottom"
-        android:background="@color/app_text_dark"
-        android:textColor="@color/app_text_dark"
+        android:background="@color/app_toolbar"
+        android:textColor="@color/app_white"
         app:pstsDividerColor="#00000000"
         app:pstsIndicatorColor="@color/app_white"
         app:pstsIndicatorHeight="2dp"

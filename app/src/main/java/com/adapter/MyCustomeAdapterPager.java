@@ -15,7 +15,7 @@ import com.fragment.MyDCoat;
  * Created by huisou on 2015/10/29.
  */
 public class MyCustomeAdapterPager extends FragmentPagerAdapter {
-    final String[] titles = {"裤装", "上衣", "套装", "大衣2"};
+    final String[] titles = {"裤装", "上衣", "套装", "大衣"};
 
     public MyCustomeAdapterPager(MyCustome myCustome, android.support.v4.app.FragmentManager fm) {
         super(fm);
