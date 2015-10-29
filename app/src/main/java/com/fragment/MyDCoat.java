@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
 
 import com.leo.base.activity.fragment.LFragment;
 import com.xzdz.R;
@@ -12,6 +14,9 @@ import com.xzdz.R;
  * Created by huisou on 2015/10/29.
  */
 public class MyDCoat extends LFragment {
+    private ImageView img;
+    private Button btn_next;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,6 +31,18 @@ public class MyDCoat extends LFragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        initView();
+    }
+
+    private void initView() {
+        img = (ImageView) getActivity().findViewById(R.id.dcoat_img);
+        btn_next = (Button) getActivity().findViewById(R.id.next4);
+        btn_next.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
     }
 
     public static MyDCoat newInstance() {

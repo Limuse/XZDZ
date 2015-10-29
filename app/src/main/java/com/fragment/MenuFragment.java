@@ -42,7 +42,7 @@ public class MenuFragment extends LFragment implements View.OnClickListener{
     private RelativeLayout rlM;
     private TextView tv_name;
     private RelativeLayout rl1, rl2, rl3, rl4, rl5, rl6, rl7;
-    private Button btn_right, btn_left;
+    private RelativeLayout btn_right, btn_left;
 
     public MenuFragment(SlidingMenu slidingMenu) {
 		this.slidingMenu = slidingMenu;
@@ -74,8 +74,8 @@ public class MenuFragment extends LFragment implements View.OnClickListener{
         rl5=(RelativeLayout)rootView.findViewById(R.id.rl5);
         rl6=(RelativeLayout)rootView.findViewById(R.id.rl6);
         rl7=(RelativeLayout)rootView.findViewById(R.id.rl7);
-        btn_left=(Button)rootView.findViewById(R.id.btn_left);
-        btn_right=(Button)rootView.findViewById(R.id.btn_right);
+        btn_left=(RelativeLayout)rootView.findViewById(R.id.btn_lefts);
+        btn_right=(RelativeLayout)rootView.findViewById(R.id.btn_rights);
         civM.setOnClickListener(this);
         tv_name.setOnClickListener(this);
         rl1.setOnClickListener(this);
@@ -133,12 +133,12 @@ public class MenuFragment extends LFragment implements View.OnClickListener{
             Intent intent = new Intent(getActivity(), Set.class);
             startActivity(intent);
         }
-        if (id == R.id.btn_left) {
+        if (id == R.id.btn_lefts) {
             //个人资料
             Intent intent = new Intent(getActivity(), MyInfo.class);
             startActivity(intent);
         }
-        if (id == R.id.btn_right) {
+        if (id == R.id.btn_rights) {
             //我的收藏
             Intent intent = new Intent(getActivity(), MyCollect.class);
             startActivity(intent);
