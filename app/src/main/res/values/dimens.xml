@@ -2,7 +2,7 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
-    <dimen name="slidingmenu_offset">100dp</dimen><!-- 60dp -->
+    <dimen name="slidingmenu_offset">88dp</dimen><!-- 60dp -->
     <dimen name="shadow_width">15dp</dimen><!-- 15dp -->
 
     <dimen name="app_toolbar">56dp</dimen>
