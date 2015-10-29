@@ -25,4 +25,5 @@
     <color name="app_text_dark">#333333</color>
     <color name="app_text_light">#8a8a8a</color>
     <color name="app_conp_text">#b3b3b3</color>
+    <color name="background_tab_pressed">#66ffffff</color>
 </resources>

@@ -2,6 +2,7 @@ package com.activity;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
@@ -14,11 +15,14 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.common.HavaSdCard;
 import com.leo.base.activity.LActivity;
+import com.leo.base.net.LReqEntity;
+import com.leo.base.util.L;
 import com.leo.base.util.T;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -26,6 +30,8 @@ import com.xzdz.R;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by huisou on 2015/10/27.
@@ -34,12 +40,14 @@ import java.io.File;
 public class MyInfo extends LActivity implements View.OnClickListener {
     private RelativeLayout rl1, rl2, rl3, rl4, rl5, rl6, rl7;
     private TextView tv_sex, tv_brithday, tv_phone, tv_mail;
+    private ImageView my_imgs;
     private Dialog dialog;
+    private String logoBase;
+    private String img;
     private static final String IMGURL = Environment
-            .getExternalStorageDirectory() + "/Android/data/com.android.xzdz/";
+            .getExternalStorageDirectory() + "/Android/data/com.xzdz/";
 
-
-    private static final String IMAGE_FILE_NAME_TEMP = "hh_image.jpg";
+    private static final String IMAGE_FILE_NAME_TEMP = "xz_image.jpg";
 
     private DisplayImageOptions options;
     private ImageLoader imageLoader;
@@ -65,6 +73,7 @@ public class MyInfo extends LActivity implements View.OnClickListener {
     }
 
     private void initView() {
+        my_imgs=(ImageView)findViewById(R.id.setting_img);
         rl1 = (RelativeLayout) findViewById(R.id.rl_img);
         rl2 = (RelativeLayout) findViewById(R.id.rl_name);
         rl3 = (RelativeLayout) findViewById(R.id.rl_nametrue);
@@ -81,7 +90,7 @@ public class MyInfo extends LActivity implements View.OnClickListener {
                 R.style.transparentFrameWindowStyle);
         dialog.setContentView(view, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT));
-
+        initDialog(view);
         rl1.setOnClickListener(this);
         rl2.setOnClickListener(this);
         rl3.setOnClickListener(this);
@@ -96,7 +105,7 @@ public class MyInfo extends LActivity implements View.OnClickListener {
     int id=v.getId();
         if(id==R.id.rl_img){
             //头像
-
+            showBuyDialog();
         }
         if(id==R.id.rl_name){
             //昵称
@@ -130,7 +139,7 @@ public class MyInfo extends LActivity implements View.OnClickListener {
         btn_play.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                T.ss("拍照");
+                //T.ss("拍照");
                 openCamera();
 
             }
@@ -138,14 +147,14 @@ public class MyInfo extends LActivity implements View.OnClickListener {
         btn_pics.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                T.ss("从相册中选择");
+                //T.ss("从相册中选择");
                 openPhones();
             }
         });
         btn_cncel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                T.ss("取消");
+                //T.ss("取消");
                 dialog.dismiss();
             }
         });
@@ -210,7 +219,7 @@ public class MyInfo extends LActivity implements View.OnClickListener {
                         }
                     }.start();
                 }
-               /* if (data != null) {
+                if (data != null) {
                     Bundle extras = data.getExtras();
                     if (extras != null) {
                         Bitmap photo = extras.getParcelable("data");
@@ -226,30 +235,45 @@ public class MyInfo extends LActivity implements View.OnClickListener {
                 }
                 dialog.cancel();
                 break;
-            case 5:
-                String name = data.getExtras().getString("name");
-                if (name.equals("1")) {
-                    tv_name.setText(names);
-                } else if (name.equals("2")) {
-                    tv_name.setText(names);
-                } else {
-                    tv_name.setText(name);
-                    names = name;
-                }
-                break;
-            case 6:
-                String sdnum = data.getExtras().getString("sdnum");
-
-                if (sdnum.equals("1")) {
-                    tv_num.setText("");
-                } else if (sdnum.equals("2")) {
-                    tv_num.setText("");
-                } else {
-                    tv_num.setText(sdnum);
-                    names = sdnum;
-                }*/
+//            case 5:
+//                String name = data.getExtras().getString("name");
+//                if (name.equals("1")) {
+//                    tv_name.setText(names);
+//                } else if (name.equals("2")) {
+//                    tv_name.setText(names);
+//                } else {
+//                    tv_name.setText(name);
+//                    names = name;
+//                }
+//                break;
+//            case 6:
+//                String sdnum = data.getExtras().getString("sdnum");
+//
+//                if (sdnum.equals("1")) {
+//                    tv_num.setText("");
+//                } else if (sdnum.equals("2")) {
+//                    tv_num.setText("");
+//                } else {
+//                    tv_num.setText(sdnum);
+//                    names = sdnum;
+//                }
+//                break;
+            default:
                 break;
         }
+    }
+    private void picloade() {
+
+//        Map<String, String> map = new HashMap<String, String>();
+//        map.put("pictures", img);// 头像
+//        map.put("uuid", Token.get(this));
+//        Resources res = getResources();
+//        String url = res.getString(R.string.app_service_url)
+//                + "/huihao/member/amendavatar/1/sign/aggregation/";
+//        LReqEntity entity = new LReqEntity(url, map);
+//        ActivityHandler handler = new ActivityHandler(this);
+//        handler.startLoadingData(entity, 1);
+
     }
     private void showBuyDialog() {
         Window window = dialog.getWindow();

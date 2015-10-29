@@ -1,20 +1,20 @@
 <resources>
 
-    <!-- Base application theme. -->
+    <!--Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
-    </style>
-    <style name="MenuTextStyle">
-        <item name="android:textColor">@color/app_white</item>
-        <item name="android:textSize">16sp</item>
+         <!--Customize your theme here. -->
     </style>
 
+
     <style name="AppTheme.Base." parent="@android:style/Theme.Holo.Light">
-        <item name="android:windowActionBar">false</item>
-        <item name="android:windowNoTitle">true</item>
         <item name="android:actionMenuTextAppearance">@style/MenuTextStyle</item>
     </style>
 
+    <style name="MenuTextStyle">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@android:color/white</item>
+
+    </style>
 
     <style name="Dialog_animstyle">
         <item name="android:windowEnterAnimation">@anim/photo_dialog_in_anim</item>
@@ -22,6 +22,7 @@
         <item name="android:windowFrame">@null</item>
         <item name="android:windowBackground">@android:color/black</item>
     </style>
+
     <style name="transparentFrameWindowStyle" parent="android:style/Theme.Dialog">
         <item name="android:windowBackground">@drawable/photo_choose_bg</item>
     </style>

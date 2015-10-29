@@ -26,7 +26,7 @@ public class Phone extends LActivity {
 
     private void initBar() {
         // Bar.setTrans(this);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbars);
         toolbar.setTitle(getResources().getText(R.string.app_phones));
         toolbar.setTitleTextColor(getResources().getColor(R.color.app_white));
         //toolbar.setBackgroundColor(Color.parseColor("#00ffffff"));
@@ -36,21 +36,17 @@ public class Phone extends LActivity {
                 finish();
             }
         });
-        toolbar.inflateMenu(R.menu.menu_rightphone);
-        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                if (item.getItemId() == R.id.menu_messages) {
-                    Intent intent = new Intent(Phone.this, ChangePhone.class);
-                    startActivity(intent);
-                }
-                return false;
-            }
-        });
+
     }
 
     private void initView() {
         tv1 = (TextView) findViewById(R.id.tv_bbb);
         tv2 = (TextView) findViewById(R.id.tv_phoness);
+    }
+
+    //更换手机
+    public void change(View v) {
+        Intent intent = new Intent(Phone.this, ChangePhone.class);
+        startActivity(intent);
     }
 }
