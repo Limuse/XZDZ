@@ -15,6 +15,9 @@ import android.widget.ImageView.ScaleType;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.common.Log;
+import com.common.UntilList;
+import com.leo.base.util.T;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.xzdz.R;
@@ -77,10 +80,19 @@ public class ImageCycleView extends LinearLayout {
         super(context);
     }
 
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        return super.dispatchTouchEvent(ev);
+    }
+
+
     /**
      * @param context
      * @param attrs
      */
+
+
+
     public ImageCycleView(Context context, AttributeSet attrs) {
         super(context, attrs);
         mContext = context;
