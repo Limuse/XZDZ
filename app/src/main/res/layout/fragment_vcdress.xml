@@ -10,13 +10,13 @@
         android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/coat_img"
+            android:id="@+id/dcoat_img"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:src="@mipmap/ic_launcher"/>
 
         <Button
-            android:id="@+id/next1"
+            android:id="@+id/nextc3"
             android:layout_width="match_parent"
             android:layout_height="@dimen/app_bottom"
             android:layout_alignParentBottom="true"

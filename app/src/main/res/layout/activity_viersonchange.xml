@@ -6,8 +6,28 @@
     android:background="@color/app_background"
     android:orientation="vertical">
 
-    <include layout="@layout/toolbar" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbarc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/colorPrimaryDark"
+            android:minHeight="?attr/actionBarSize" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="54dp"
+            android:textColor="@color/app_white"
+            android:text="保存"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/btn_save"
+            android:textSize="16sp"
+            android:onClick="save"/>
+    </RelativeLayout>
     <com.custom.PagerSlidingTabStrip
         android:id="@+id/tab_strip"
         android:layout_width="match_parent"

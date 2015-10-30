@@ -6,19 +6,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
 
-import com.activity.ViersonChange;
+import com.activity.Fabric;
+import com.activity.FabricChange;
 import com.leo.base.activity.fragment.LFragment;
+import com.leo.base.util.T;
 import com.xzdz.R;
 
 /**
- * Created by huisou on 2015/10/29.
- * 裤装
+ * Created by huisou on 2015/10/30.
+ * 正装
  */
-public class MyC_Pants extends LFragment {
-    private ImageView img;
+public class Vc_Suit extends LFragment {
     private Button btn_next;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,7 +28,7 @@ public class MyC_Pants extends LFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_mycpant, container, false);
+        return inflater.inflate(R.layout.fragment_vcsuit, container, false);
     }
 
     @Override
@@ -35,19 +36,22 @@ public class MyC_Pants extends LFragment {
         super.onActivityCreated(savedInstanceState);
         initView();
     }
+
     private void initView() {
-        img = (ImageView) getActivity().findViewById(R.id.pant_img);
-        btn_next = (Button) getActivity().findViewById(R.id.next2);
+//        img = (ImageView) getActivity().findViewById(R.id.coat_img);
+        btn_next = (Button) getActivity().findViewById(R.id.nextc2);
         btn_next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), ViersonChange.class);
+                Intent intent = new Intent(getActivity(), Fabric.class);
                 startActivity(intent);
+//                T.ss("下一步");
             }
         });
     }
-    public static MyC_Pants newInstance() {
-        MyC_Pants fragment = new MyC_Pants();
+
+    public static Vc_Suit newInstance() {
+        Vc_Suit fragment = new Vc_Suit();
         Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;

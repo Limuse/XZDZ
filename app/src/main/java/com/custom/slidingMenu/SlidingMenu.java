@@ -318,7 +318,9 @@ public class SlidingMenu extends RelativeLayout {
 		mViewAbove.setContent(view);
 		showContent();
 	}
-
+	public void setBehindCanvasTransformer(CanvasTransformer t) {
+		this.mViewBehind.setCanvasTransformer(t);
+	}
 	/**
 	 * Retrieves the current content.
 	 * @return the current content

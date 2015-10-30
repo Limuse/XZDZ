@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/app_background"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbars"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/colorPrimaryDark"
+            android:minHeight="?attr/actionBarSize" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="54dp"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/btn_save"
+            android:onClick="save"
+            android:text="保存"
+            android:textColor="@color/app_white"
+            android:textSize="16sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/img1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="170dp"
+            android:src="@mipmap/fc" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="80dp"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/app_myself_left_mar"
+                android:orientation="vertical">
+
+
+                <ImageView
+                    android:id="@+id/imgc1"
+                    android:layout_width="64dp"
+                    android:layout_height="61dp"
+                    android:background="@mipmap/noc"
+                    android:src="@mipmap/cjh1" />
+
+                <TextView
+                    android:id="@+id/tv_imgc1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/imgc1"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="4dp"
+                    android:text="第一个" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/app_myself_left_mar"
+                android:orientation="vertical">
+
+
+                <ImageView
+                    android:id="@+id/imgc2"
+                    android:layout_width="64dp"
+                    android:layout_height="61dp"
+                    android:background="@mipmap/noc"
+                    android:src="@mipmap/cjh2" />
+
+                <TextView
+                    android:id="@+id/tv_imgc2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/imgc2"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="4dp"
+                    android:text="第一个" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/app_myself_left_mar"
+                android:orientation="vertical">
+
+
+                <ImageView
+                    android:id="@+id/imgc3"
+                    android:layout_width="64dp"
+                    android:layout_height="61dp"
+                    android:background="@mipmap/noc"
+                    android:src="@mipmap/cjh3" />
+
+                <TextView
+                    android:id="@+id/tv_imgc3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/imgc3"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="4dp"
+                    android:text="第一个" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/app_myself_left_mar"
+                android:orientation="vertical">
+
+
+                <ImageView
+                    android:id="@+id/imgc4"
+                    android:layout_width="64dp"
+                    android:layout_height="61dp"
+                    android:background="@mipmap/noc"
+                    android:src="@mipmap/cjh1" />
+
+                <TextView
+                    android:id="@+id/tv_imgc4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/imgc4"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="4dp"
+                    android:text="第一个" />
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/nextt"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="10dp"
+            android:background="@mipmap/dds"
+            android:textColor="@color/app_white"
+            android:textSize="@dimen/app_text_big" />
+    </RelativeLayout>
+
+</LinearLayout>

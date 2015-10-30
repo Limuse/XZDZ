@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/app_background"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbars"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/colorPrimaryDark"
+            android:minHeight="?attr/actionBarSize" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="54dp"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/btn_save"
+            android:onClick="save"
+            android:text="保存"
+            android:textColor="@color/app_white"
+            android:textSize="16sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/imgv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="170dp"
+            android:src="@mipmap/fc" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="80dp"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/app_myself_left_mar"
+                android:orientation="vertical">
+
+
+                <ImageView
+                    android:id="@+id/imgc1"
+                    android:layout_width="64dp"
+                    android:layout_height="61dp"
+                    android:background="@mipmap/noc"
+                    android:src="@mipmap/cjh1" />
+
+                <TextView
+                    android:id="@+id/tv_imgc1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="领口" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/app_myself_left_mar"
+                android:orientation="vertical">
+
+
+                <ImageView
+                    android:id="@+id/imgc2"
+                    android:layout_width="64dp"
+                    android:layout_height="61dp"
+                    android:background="@mipmap/noc"
+                    android:src="@mipmap/cjh2" />
+
+                <TextView
+                    android:id="@+id/tv_imgc2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="口袋" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/app_myself_left_mar"
+                android:orientation="vertical">
+
+
+                <ImageView
+                    android:id="@+id/imgc3"
+                    android:layout_width="64dp"
+                    android:layout_height="61dp"
+                    android:background="@mipmap/noc"
+                    android:src="@mipmap/cjh3" />
+
+                <TextView
+                    android:id="@+id/tv_imgc3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="内衬" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/app_myself_left_mar"
+                android:orientation="vertical">
+
+
+                <ImageView
+                    android:id="@+id/imgc4"
+                    android:layout_width="64dp"
+                    android:layout_height="61dp"
+                    android:background="@mipmap/noc"
+                    android:src="@mipmap/cjh1" />
+
+                <TextView
+                    android:id="@+id/tv_imgc4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="袖口" />
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_submit"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginLeft="@dimen/app_myself_left_mar"
+            android:layout_marginRight="@dimen/app_myself_left_mar"
+            android:layout_marginTop="@dimen/app_lycard"
+            android:background="@drawable/btn_save"
+            android:text="提交订单"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="20dp"
+            android:textColor="@color/app_white"
+            android:textSize="@dimen/app_text_title" />
+    </RelativeLayout>
+
+</LinearLayout>

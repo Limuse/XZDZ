@@ -17,5 +17,8 @@
     <string name="app_updatepwd">修改密码</string>
     <string name="app_buildemail">绑定邮箱</string>
     <string name="app_phones">绑定手机</string>
+    <string name="app_viersonchange">版型选择</string>
+    <string name="app_fabrichange">细节选择</string>
+    <string name="app_fabric">面料选择</string>
     <string name="app_service_url">http://afantiwfx.cn/</string>
 </resources>
