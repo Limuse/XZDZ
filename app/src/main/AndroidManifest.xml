@@ -110,6 +110,26 @@
             android:name="com.activity.OrderDetails"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait" />
+        <!--预约量体-->
+        <activity
+            android:name="com.activity.QuantityBody"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait" />
+        <!--确认订单-->
+        <activity
+            android:name="com.activity.SureOrder"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait" />
+        <!--正在定制状态-->
+        <activity
+            android:name="com.activity.CustomingState"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait" />
+        <!--售后-提交信息-->
+        <activity
+            android:name="com.activity.AfterSale"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

@@ -20,5 +20,9 @@
     <string name="app_viersonchange">版型选择</string>
     <string name="app_fabrichange">细节选择</string>
     <string name="app_fabric">面料选择</string>
+    <string name="app_orderdetail">订单详情</string>
+    <string name="app_quantitybody">预约量体</string>
+    <string name="app_sureorder">确认订单</string>
+    <string name="app_afersalse">提交信息</string>
     <string name="app_service_url">http://afantiwfx.cn/</string>
 </resources>
