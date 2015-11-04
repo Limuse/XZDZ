@@ -130,6 +130,11 @@
             android:name="com.activity.AfterSale"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait" />
+        <!--提交信息-提交审核-->
+        <activity
+            android:name="com.activity.SubmitCheck"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

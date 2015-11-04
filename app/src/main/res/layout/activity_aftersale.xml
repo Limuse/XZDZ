@@ -2,9 +2,141 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/app_background"
+    android:background="@color/app_white"
     android:orientation="vertical">
 
     <include layout="@layout/toolbar" />
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/app_white"
+            android:orientation="vertical">
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/app_lycard"
+                android:background="@color/app_background" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/app_toolbar"
+                android:background="@drawable/btn_press">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/app_myself_left_mar"
+                    android:text="需要修缮的部位"
+                    android:textColor="@color/app_text_dark"
+                    android:textSize="@dimen/app_text_big" />
+
+
+                <Spinner
+                    android:id="@+id/spinner"
+                    style="@style/SampleTheme"
+                    android:layout_width="80dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/app_myself_left_mar"
+                    android:scrollbars="none"></Spinner>
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/app_lycard"
+                android:background="@color/app_background" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/app_toolbar"
+                android:background="@drawable/btn_press">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/app_myself_left_mar"
+                    android:text="添加具体说明"
+                    android:textColor="@color/app_text_dark"
+                    android:textSize="@dimen/app_text_big" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/app_background"></View>
+
+            <EditText
+                android:id="@+id/et_xiangq"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:layout_marginLeft="@dimen/app_myself_left_mar"
+                android:layout_marginRight="@dimen/app_myself_left_mar"
+                android:layout_marginTop="8dp"
+                android:background="@null"
+                android:gravity="top"
+                android:hint="请添加具体说明，并上传保修卡，损坏部位清晰照片并提交审核"
+                android:maxWidth="120dp"
+                android:textSize="@dimen/app_text_normal" />
+
+            <HorizontalScrollView
+                android:id="@+id/chae"
+                android:layout_width="match_parent"
+                android:layout_height="72dp"
+                android:scrollbars="none">
+
+                <LinearLayout
+                    android:id="@+id/pic_lly"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" />
+
+            </HorizontalScrollView>
+
+            <RelativeLayout
+                android:id="@+id/rl_byn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:layout_marginLeft="@dimen/app_myself_left_mar"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/btn_press">
+
+
+                <ImageView
+                    android:id="@+id/cpics"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_margin="2dp"
+                    android:layout_marginLeft="@dimen/app_myself_left_mar"
+                    android:background="@drawable/btn_press"
+                    android:src="@mipmap/crame" />
+
+
+            </RelativeLayout>
+
+            <Button
+                android:id="@+id/tj"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/app_toolbar"
+                android:layout_marginLeft="@dimen/app_myself_left_mar"
+                android:layout_marginRight="@dimen/app_myself_left_mar"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/btn_save"
+                android:text="提交审核"
+                android:textColor="@color/app_white"
+                android:textSize="@dimen/app_text_big" />
+        </LinearLayout>
+
+    </ScrollView>
 </LinearLayout>

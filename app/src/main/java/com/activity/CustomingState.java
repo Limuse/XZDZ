@@ -54,6 +54,11 @@ public class CustomingState extends LActivity implements View.OnClickListener {
     }
 
     private void initView() {
+        rl_s1 = (LinearLayout) findViewById(R.id.lly_s1);
+        rl_s2 = (LinearLayout) findViewById(R.id.lly_s2);
+        rl_s3 = (LinearLayout) findViewById(R.id.lly_s3);
+        rl_s4 = (LinearLayout) findViewById(R.id.lly_s4);
+        rl_s5 = (LinearLayout) findViewById(R.id.lly_s5);
         /**
          * 根据状态判断是否隐藏
          */
@@ -61,12 +66,8 @@ public class CustomingState extends LActivity implements View.OnClickListener {
         rl_s2.setVisibility(View.GONE);
         rl_s3.setVisibility(View.GONE);
         rl_s4.setVisibility(View.GONE);
-        rl_s5.setVisibility(View.GONE);
-        rl_s1 = (LinearLayout) findViewById(R.id.lly_s1);
-        rl_s2 = (LinearLayout) findViewById(R.id.lly_s2);
-        rl_s3 = (LinearLayout) findViewById(R.id.lly_s3);
-        rl_s4 = (LinearLayout) findViewById(R.id.lly_s4);
-        rl_s5 = (LinearLayout) findViewById(R.id.lly_s5);
+        rl_s5.setVisibility(View.VISIBLE);
+
         tv1_name = (TextView) findViewById(R.id.sc_name1);
         tv1_phone = (TextView) findViewById(R.id.sc_phone1);
         tv1_time = (TextView) findViewById(R.id.sc_time1);
@@ -113,8 +114,9 @@ public class CustomingState extends LActivity implements View.OnClickListener {
             T.ss("客服电话");
         }
         if (id == R.id.shouh) {
-//            Intent intent=new Intent(this,);
-//            startActivity(intent);
+            //售后
+            Intent intent = new Intent(this, AfterSale.class);
+            startActivity(intent);
         }
 
     }

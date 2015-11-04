@@ -26,4 +26,15 @@
     <style name="transparentFrameWindowStyle" parent="android:style/Theme.Dialog">
         <item name="android:windowBackground">@drawable/photo_choose_bg</item>
     </style>
+
+
+    <style name="TestSpinnerStyle" parent="android:style/Widget.ListView.DropDown">
+        <item name="android:divider">#ff0000</item>
+        <item name="android:dividerHeight">5dp</item>
+    </style>
+
+
+    <style name="SampleTheme" parent="@android:style/Theme.Holo.Light">
+        <item name="android:dropDownListViewStyle">@style/TestSpinnerStyle</item>
+    </style>
 </resources>
