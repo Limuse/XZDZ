@@ -4,7 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.GridView;
 
+import com.adapter.MyWorkedGridvAdapter;
 import com.leo.base.activity.LActivity;
 import com.leo.base.util.T;
 import com.xzdz.R;
@@ -14,15 +16,18 @@ import com.xzdz.R;
  * 我的作品
  */
 public class Myworked extends LActivity {
+    private GridView gridView;
+    private MyWorkedGridvAdapter adapter;
 
     @Override
     protected void onLCreate(Bundle bundle) {
         setContentView(R.layout.activity_myworked);
         initBar();
     }
+
     private void initBar() {
         // Bar.setTrans(this);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbars);
         toolbar.setTitle(getResources().getText(R.string.app_myworked));
         toolbar.setTitleTextColor(getResources().getColor(R.color.app_white));
         //toolbar.setBackgroundColor(Color.parseColor("#00ffffff"));
@@ -33,4 +38,10 @@ public class Myworked extends LActivity {
             }
         });
     }
+
+    private void initView() {
+        gridView = (GridView) findViewById(R.id.gridView);
+
+    }
+
 }
