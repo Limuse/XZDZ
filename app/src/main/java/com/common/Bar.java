@@ -36,7 +36,7 @@ public class Bar {
         }
         SystemBarTintManager tintManager = new SystemBarTintManager(activity);
         tintManager.setStatusBarTintEnabled(true);
-        tintManager.setStatusBarTintResource(R.color.app_white);
+        tintManager.setStatusBarTintResource(R.color.app_toolbar);
     }
 
 

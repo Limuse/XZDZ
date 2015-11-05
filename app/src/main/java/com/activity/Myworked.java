@@ -1,10 +1,12 @@
 package com.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import com.leo.base.activity.LActivity;
+import com.leo.base.util.T;
 import com.xzdz.R;
 
 /**

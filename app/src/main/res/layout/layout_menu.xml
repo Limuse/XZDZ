@@ -31,7 +31,6 @@
             android:text="未登录"
             android:textColor="@color/app_white"
             android:textSize="@dimen/app_text_title" />
-
     </RelativeLayout>
 
     <ScrollView

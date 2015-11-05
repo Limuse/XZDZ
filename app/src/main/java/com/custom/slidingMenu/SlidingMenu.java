@@ -318,7 +318,7 @@ public class SlidingMenu extends RelativeLayout {
 		mViewAbove.setContent(view);
 		showContent();
 	}
-	public void setBehindCanvasTransformer(CanvasTransformer t) {
+	public void setBehindCanvasTransformer(SlidingMenu.CanvasTransformer t) {
 		this.mViewBehind.setCanvasTransformer(t);
 	}
 	/**
