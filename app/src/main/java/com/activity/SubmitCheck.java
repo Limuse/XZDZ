@@ -21,6 +21,10 @@ public class SubmitCheck extends LActivity implements View.OnClickListener {
     private LinearLayout rl_sc1, rl_sc2, rl_sc3, rl_sc4, rl_sc5;
     private Button btn_backfirst;
     private TextView tv_kfphones;
+    private TextView tv2_reason;
+    private TextView tv3_name, tv3_phone, tv3_addr;
+    private TextView tv4_name, tv4_phone, tv4_addr;
+    private TextView tv5_name, tv5_phone, tv5_addr;
 
     @Override
     protected void onLCreate(Bundle bundle) {
@@ -53,7 +57,17 @@ public class SubmitCheck extends LActivity implements View.OnClickListener {
         rl_sc2.setVisibility(View.GONE);
         rl_sc3.setVisibility(View.GONE);
         rl_sc4.setVisibility(View.GONE);
-        rl_sc5.setVisibility(View.GONE);
+        rl_sc5.setVisibility(View.VISIBLE);
+        tv2_reason = (TextView) findViewById(R.id.tv_reason);
+        tv3_name = (TextView) findViewById(R.id.scnames3);
+        tv3_phone = (TextView) findViewById(R.id.scphone3);
+        tv3_addr = (TextView) findViewById(R.id.scaddr3);
+        tv4_name = (TextView) findViewById(R.id.scnames4);
+        tv4_phone = (TextView) findViewById(R.id.scphone4);
+        tv4_addr = (TextView) findViewById(R.id.scaddr4);
+        tv5_name = (TextView) findViewById(R.id.scnames5);
+        tv5_phone = (TextView) findViewById(R.id.scphone5);
+        tv5_addr = (TextView) findViewById(R.id.scaddr5);
         tv_kfphones = (TextView) findViewById(R.id.scu_palyphone1);
         btn_backfirst = (Button) findViewById(R.id.backfirst);
         tv_kfphones.setOnClickListener(this);

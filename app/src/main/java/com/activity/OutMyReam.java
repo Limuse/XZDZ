@@ -1,6 +1,5 @@
 package com.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -14,18 +13,14 @@ import com.leo.base.activity.LActivity;
 import com.xzdz.R;
 
 /**
- * Created by huisou on 2015/10/27.
- * 我的红包
+ * Created by huisou on 2015/11/5.
  */
-public class MyReam extends LActivity implements View.OnClickListener {
-    private RelativeLayout rl_next;
-    private EditText et_text;
-    private Button btn_change;
-    private IlistView listview;
+public class OutMyReam extends LActivity {
+    private IlistView listview_outrb;
 
     @Override
     protected void onLCreate(Bundle bundle) {
-        setContentView(R.layout.activity_myredm);
+        setContentView(R.layout.activity_outmyream);
         initBar();
         initView();
     }
@@ -33,7 +28,7 @@ public class MyReam extends LActivity implements View.OnClickListener {
     private void initBar() {
         // Bar.setTrans(this);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle(getResources().getText(R.string.app_myredm));
+        toolbar.setTitle(getResources().getText(R.string.app_outmyredm));
         toolbar.setTitleTextColor(getResources().getColor(R.color.app_white));
         //toolbar.setBackgroundColor(Color.parseColor("#00ffffff"));
         toolbar.setNavigationIcon(R.mipmap.right_too);//左边图标
@@ -45,19 +40,6 @@ public class MyReam extends LActivity implements View.OnClickListener {
     }
 
     private void initView() {
-        rl_next = (RelativeLayout) findViewById(R.id.rl_next);
-        et_text = (EditText) findViewById(R.id.ed_redb);
-        btn_change = (Button) findViewById(R.id.btn_change);
-        listview = (IlistView) findViewById(R.id.listview_rb);
-        rl_next.setOnClickListener(this);
-    }
-
-    @Override
-    public void onClick(View v) {
-        int id = v.getId();
-        if (id == R.id.rl_next) {
-            Intent intent = new Intent(this, OutMyReam.class);
-            startActivity(intent);
-        }
+        listview_outrb = (IlistView) findViewById(R.id.listview_rb);
     }
 }

@@ -135,6 +135,11 @@
             android:name="com.activity.SubmitCheck"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait" />
+        <!--已失效红包-->
+        <activity
+            android:name="com.activity.OutMyReam"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

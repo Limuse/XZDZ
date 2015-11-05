@@ -12,6 +12,7 @@
     <string name="app_customing">正在定制</string>
     <string name="app_specificdata">量体数据</string>
     <string name="app_myredm">我的红包</string>
+    <string name="app_outmyredm">已失效红包</string>
     <string name="app_set">设置</string>
     <string name="write">编辑</string>
     <string name="app_updatepwd">修改密码</string>
