@@ -18,6 +18,7 @@
             android:minHeight="?attr/actionBarSize" />
 
         <Button
+            android:id="@+id/write"
             android:layout_width="wrap_content"
             android:layout_height="54dp"
             android:textColor="@color/app_white"
@@ -34,6 +35,9 @@
         android:layout_height="wrap_content"
         android:horizontalSpacing="10dp"
         android:numColumns="2"
-        android:verticalSpacing="10dp" />
+        android:columnWidth="90dp"
+        android:stretchMode="columnWidth"
+        android:verticalSpacing="10dp"
+        />
     　　
 </LinearLayout>

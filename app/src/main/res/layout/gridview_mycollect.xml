@@ -11,15 +11,14 @@
         android:layout_gravity="center">
 
         <ImageView
-            android:id="@+id/gv_img"
+            android:id="@+id/gv_imgs"
             android:layout_width="144dp"
             android:layout_height="144dp"
-            android:layout_marginLeft="@dimen/app_myself_left_mar"
             android:layout_marginTop="8dp"
             android:src="@mipmap/xz" />
 
         <ImageView
-            android:id="@+id/del"
+            android:id="@+id/dels"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_alignRight="@+id/gv_img"
@@ -28,22 +27,20 @@
     </RelativeLayout>
 
     <TextView
-        android:id="@+id/gv_title"
+        android:id="@+id/gv_titles"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginLeft="@dimen/app_myself_left_mar"
         android:layout_marginTop="4dp"
         android:text="单排一粒扣西装"
         android:textColor="@color/app_text_dark"
         android:textSize="@dimen/app_text_big" />
 
     <TextView
-        android:id="@+id/gv_time"
+        android:id="@+id/gv_money"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginLeft="@dimen/app_myself_left_mar"
         android:layout_marginTop="4dp"
         android:text="￥3456"
         android:textColor="@color/app_text_dark"

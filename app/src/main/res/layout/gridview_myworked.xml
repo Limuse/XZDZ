@@ -14,7 +14,6 @@
             android:id="@+id/gv_img"
             android:layout_width="144dp"
             android:layout_height="144dp"
-            android:layout_marginLeft="@dimen/app_myself_left_mar"
             android:layout_marginTop="8dp"
             android:src="@mipmap/xz" />
 
@@ -32,7 +31,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginLeft="@dimen/app_myself_left_mar"
         android:layout_marginTop="4dp"
         android:text="单排一粒扣西装"
         android:textColor="@color/app_text_dark"
@@ -43,7 +41,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginLeft="@dimen/app_myself_left_mar"
         android:layout_marginTop="4dp"
         android:text="2015-10-23 09:34:00"
         android:textColor="@color/app_text_light"
@@ -54,7 +51,6 @@
         android:layout_width="120dp"
         android:layout_height="38dp"
         android:layout_gravity="center"
-        android:layout_marginLeft="@dimen/app_myself_left_mar"
         android:layout_marginTop="4dp"
         android:background="@drawable/btn_out"
         android:text="继续定制"
