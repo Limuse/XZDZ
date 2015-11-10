@@ -41,8 +41,8 @@
         app:pstsUnderlineHeight="0dp"
         app:selectedTabTextColor="@color/background_tab_pressed" />
 
-    <android.support.v4.view.ViewPager
-        android:id="@+id/view_pager"
+    <com.custom.CustomViewPager
+        android:id="@+id/view_pagers"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 </LinearLayout>

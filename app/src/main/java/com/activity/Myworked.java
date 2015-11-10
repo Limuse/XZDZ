@@ -31,7 +31,7 @@ public class Myworked extends LActivity {
     private String title[] = null;
     private String time[] = null;
     private String id[] = null;
-    private  Boolean flg=true;
+    private Boolean flg = true;
 
     @Override
     protected void onLCreate(Bundle bundle) {
@@ -60,9 +60,13 @@ public class Myworked extends LActivity {
                 if (flg == true) {
                     write.setText("完成");
                     flg = false;
+                    adapter.Update(true);
+                    adapter.notifyDataSetChanged();
                 } else if (flg == false) {
                     write.setText("编辑");
                     flg = true;
+                    adapter.Update(false);
+                    adapter.notifyDataSetChanged();
                 }
             }
         });
@@ -80,9 +84,6 @@ public class Myworked extends LActivity {
             }
         });
     }
-
-
-
 
 
     private void initData() {

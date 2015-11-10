@@ -72,7 +72,7 @@ public class OrderDetails extends LActivity implements View.OnClickListener {
         int id = v.getId();
         if (id == R.id.rl_passs) {
             T.ss("添加预约量体信息");
-            Intent intent=new Intent(this,QuantityBody.class);
+            Intent intent = new Intent(this, QuantityBody.class);
             startActivity(intent);
         }
         if (id == R.id.rl_pass2) {
@@ -81,12 +81,14 @@ public class OrderDetails extends LActivity implements View.OnClickListener {
         if (id == R.id.rl_mails) {
             T.ss("商品清单");
         }
-        if(id==R.id.rl_clred){
+        if (id == R.id.rl_clred) {
             T.ss("红包");
+            Intent intent = new Intent(this, MyReam.class);
+            startActivity(intent);
         }
-        if(id==R.id.btn_payfor){
+        if (id == R.id.btn_payfor) {
             T.ss("支付定金");
-            Intent intent=new Intent(this,SureOrder.class);
+            Intent intent = new Intent(this, SureOrder.class);
             startActivity(intent);
         }
     }

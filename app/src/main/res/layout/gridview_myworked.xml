@@ -8,7 +8,8 @@
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center">
+        android:layout_gravity="center"
+        android:layout_marginTop="4dp">
 
         <ImageView
             android:id="@+id/gv_img"
@@ -17,13 +18,21 @@
             android:layout_marginTop="8dp"
             android:src="@mipmap/xz" />
 
-        <ImageView
+        <RelativeLayout
             android:id="@+id/del"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             android:layout_alignRight="@+id/gv_img"
-            android:src="@mipmap/del"
-            android:visibility="gone" />
+            android:background="@drawable/btn_press">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:background="@drawable/btn_press"
+                android:padding="1dp"
+                android:src="@mipmap/del" />
+        </RelativeLayout>
+
     </RelativeLayout>
 
     <TextView

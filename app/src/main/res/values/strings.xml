@@ -25,5 +25,6 @@
     <string name="app_quantitybody">预约量体</string>
     <string name="app_sureorder">确认订单</string>
     <string name="app_afersalse">提交信息</string>
+    <string name="app_imgfile">图片选择</string>
     <string name="app_service_url">http://afantiwfx.cn/</string>
 </resources>

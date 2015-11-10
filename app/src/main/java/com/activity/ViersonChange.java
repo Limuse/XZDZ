@@ -3,10 +3,12 @@ package com.activity;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
+import android.view.MotionEvent;
 import android.view.View;
 
 import com.adapter.MyCustomeAdapterPager;
 import com.adapter.ViersonChangeAdapterPager;
+import com.custom.CustomViewPager;
 import com.custom.PagerSlidingTabStrip;
 import com.leo.base.activity.LActivity;
 import com.leo.base.util.T;
@@ -18,7 +20,7 @@ import com.xzdz.R;
  */
 public class ViersonChange extends LActivity {
     private PagerSlidingTabStrip tabStrip;
-    private ViewPager viewPager;
+    private CustomViewPager viewPager;
     private ViersonChangeAdapterPager pagerAdapter;
 
     @Override
@@ -41,10 +43,18 @@ public class ViersonChange extends LActivity {
             }
         });
         tabStrip = (PagerSlidingTabStrip) findViewById(R.id.tab_strip);
-        viewPager = (ViewPager) findViewById(R.id.view_pager);
+        viewPager = (CustomViewPager) findViewById(R.id.view_pagers);
         pagerAdapter = new ViersonChangeAdapterPager(this, getSupportFragmentManager());
         viewPager.setAdapter(pagerAdapter);
+        //禁止手动滑动
+        viewPager.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                return true;
+            }
+        });
         tabStrip.setViewPager(viewPager);
+
     }
 
     public void save(View v) {

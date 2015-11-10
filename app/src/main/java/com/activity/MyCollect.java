@@ -50,9 +50,13 @@ public class MyCollect extends LActivity {
                 if (flg == true) {
                     write.setText("完成");
                     flg = false;
+                    adapter.Update(true);
+                    adapter.notifyDataSetChanged();
                 } else if (flg == false) {
                     write.setText("编辑");
                     flg = true;
+                    adapter.Update(false);
+                    adapter.notifyDataSetChanged();
                 }
             }
         });

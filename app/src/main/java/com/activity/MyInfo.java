@@ -88,7 +88,7 @@ public class MyInfo extends LActivity implements View.OnClickListener {
         View view = getLayoutInflater().inflate(R.layout.pic_show, null);
         dialog = new Dialog(this,
                 R.style.transparentFrameWindowStyle);
-        dialog.setContentView(view, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT,
+        dialog.setContentView(view, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT));
         initDialog(view);
         rl1.setOnClickListener(this);

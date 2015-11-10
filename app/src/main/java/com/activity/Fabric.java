@@ -14,6 +14,7 @@ import com.xzdz.R;
 
 /**
  * Created by huisou on 2015/10/30.
+ * 面料选择
  */
 public class Fabric extends LActivity {
     private Button btn_next;
@@ -30,7 +31,7 @@ public class Fabric extends LActivity {
     private void initBar() {
         // Bar.setTrans(this);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbars);
-        toolbar.setTitle(getResources().getText(R.string.app_fabrichange));
+        toolbar.setTitle(getResources().getText(R.string.app_fabric));
         toolbar.setTitleTextColor(getResources().getColor(R.color.app_white));
         //toolbar.setBackgroundColor(Color.parseColor("#00ffffff"));
         toolbar.setNavigationIcon(R.mipmap.right_too);//左边图标

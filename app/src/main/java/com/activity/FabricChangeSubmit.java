@@ -13,6 +13,7 @@ import com.xzdz.R;
 
 /**
  * Created by huisou on 2015/10/30.
+ *
  */
 public class FabricChangeSubmit extends LActivity implements View.OnClickListener {
     private Button btn_submit;
