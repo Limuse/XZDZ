@@ -51,6 +51,7 @@ public class MyInfo extends LActivity implements View.OnClickListener {
 
     private DisplayImageOptions options;
     private ImageLoader imageLoader;
+
     @Override
     protected void onLCreate(Bundle bundle) {
         setContentView(R.layout.activity_myinfo);
@@ -73,7 +74,7 @@ public class MyInfo extends LActivity implements View.OnClickListener {
     }
 
     private void initView() {
-        my_imgs=(ImageView)findViewById(R.id.setting_img);
+        my_imgs = (ImageView) findViewById(R.id.setting_img);
         rl1 = (RelativeLayout) findViewById(R.id.rl_img);
         rl2 = (RelativeLayout) findViewById(R.id.rl_name);
         rl3 = (RelativeLayout) findViewById(R.id.rl_nametrue);
@@ -84,7 +85,7 @@ public class MyInfo extends LActivity implements View.OnClickListener {
         tv_sex = (TextView) findViewById(R.id.tv_sex);
         tv_brithday = (TextView) findViewById(R.id.tv_bridthday);
         tv_phone = (TextView) findViewById(R.id.tv_phone);
-        tv_mail=(TextView) findViewById(R.id.tv_mial);
+        tv_mail = (TextView) findViewById(R.id.tv_mial);
         View view = getLayoutInflater().inflate(R.layout.pic_show, null);
         dialog = new Dialog(this,
                 R.style.transparentFrameWindowStyle);
@@ -102,31 +103,36 @@ public class MyInfo extends LActivity implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-    int id=v.getId();
-        if(id==R.id.rl_img){
+        int id = v.getId();
+        if (id == R.id.rl_img) {
             //头像
             showBuyDialog();
         }
-        if(id==R.id.rl_name){
+        if (id == R.id.rl_name) {
             //昵称
+            Intent intent = new Intent(this, UpdateName.class);
+            startActivityForResult(intent, 5);
         }
-        if(id==R.id.rl_nametrue){
+        if (id == R.id.rl_nametrue) {
             //真实姓名
+            Intent intent = new Intent(this, UpdateNameTrue.class);
+            startActivity(intent);
         }
-        if(id==R.id.rl_sex){
+        if (id == R.id.rl_sex) {
             //性别
         }
-        if(id==R.id.rl_brithday){
+        if (id == R.id.rl_brithday) {
             //生日
         }
-        if(id==R.id.rl_phone){
+        if (id == R.id.rl_phone) {
             //手机
         }
-        if(id==R.id.rl_mail){
+        if (id == R.id.rl_mail) {
             //邮箱
         }
 
     }
+
     private void initDialog(View view) {
         Button btn_play = (Button) view.findViewById(R.id.btn_play);
         Button btn_pics = (Button) view.findViewById(R.id.btn_pics);
@@ -262,6 +268,7 @@ public class MyInfo extends LActivity implements View.OnClickListener {
                 break;
         }
     }
+
     private void picloade() {
 
 //        Map<String, String> map = new HashMap<String, String>();
@@ -275,6 +282,7 @@ public class MyInfo extends LActivity implements View.OnClickListener {
 //        handler.startLoadingData(entity, 1);
 
     }
+
     private void showBuyDialog() {
         Window window = dialog.getWindow();
         window.setWindowAnimations(R.style.Dialog_animstyle);

@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 
-import com.activity.ViersonChange;
+import com.activity.ViersonChanges;
 import com.leo.base.activity.fragment.LFragment;
 import com.xzdz.R;
 
@@ -41,7 +41,7 @@ public class MyC_Pants extends LFragment {
         btn_next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), ViersonChange.class);
+                Intent intent = new Intent(getActivity(), ViersonChanges.class);
                 startActivity(intent);
             }
         });

@@ -26,5 +26,7 @@
     <string name="app_sureorder">确认订单</string>
     <string name="app_afersalse">提交信息</string>
     <string name="app_imgfile">图片选择</string>
-    <string name="app_service_url">http://afantiwfx.cn/</string>
+    <string name="app_updatename">修改昵称</string>
+    <string name="app_updatenametrue">修改名称</string>
+    <string name="app_service_url">http://huihaokj.cn/</string>
 </resources>

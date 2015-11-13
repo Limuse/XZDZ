@@ -1,5 +1,7 @@
 package com.activity;
 
+import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.InputType;
@@ -7,8 +9,19 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.handle.ActivityHandler;
 import com.leo.base.activity.LActivity;
+import com.leo.base.entity.LMessage;
+import com.leo.base.net.LReqEntity;
+import com.leo.base.util.LSharePreference;
+import com.leo.base.util.T;
 import com.xzdz.R;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by huisou on 2015/10/28.
@@ -84,6 +97,57 @@ public class UpdatePwd extends LActivity implements View.OnClickListener {
         if (id == R.id.btn_save) {
             ed1.getText().toString();
             ed2.getText().toString();
+            String oldpasswd =  ed1.getText().toString();
+            String passwd = ed2.getText().toString().trim();
+
+            if (oldpasswd.equals("") || passwd.equals("") ) {
+                T.ss("请填写完整信息");
+            }
+            else {
+                Resources res = getResources();
+                String url = res.getString(R.string.app_service_url) + "/app/member/editpassword/sign/aggregation/";
+                Map<String, String> map = new HashMap<String, String>();
+               // map.put("uuid", Token.get(this));
+                map.put("opwd", oldpasswd);//oldpasswd 旧密码
+                map.put("pwd", passwd);// passwd 新密码
+                LReqEntity entity = new LReqEntity(url, map);
+                ActivityHandler handler = new ActivityHandler(this);
+                handler.startLoadingData(entity, 1);
+            }
+
+        }
+    }
+
+    // 返回获取的网络数据
+    public void onResultHandler(LMessage msg, int requestId) {
+        super.onResultHandler(msg, requestId);
+        if (msg != null) {
+            if (requestId == 1) {
+                getJsonData(msg.getStr());
+            } else {
+                T.ss("获取数据失败");
+            }
+        }
+    }
+
+    private void getJsonData(String data) {
+        try {
+            JSONObject jsonObject = new JSONObject(data);
+            int code = jsonObject.getInt("status");
+            if (code == 1) {
+                T.ss("密码修改成功");
+                finish();
+            } else {
+                T.ss(jsonObject.getString("info"));
+                String longs=jsonObject.getString("info");
+                if(longs.equals("请先登录")){
+                    LSharePreference.getInstance(this).setBoolean("login", false);
+                    Intent intent = new Intent(this, LoginMain.class);
+                    startActivity(intent);
+                }
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
     }
 }
