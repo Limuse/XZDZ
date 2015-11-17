@@ -27,7 +27,11 @@
     <color name="app_conp_text">#b3b3b3</color>
     <color name="background_tab_pressed">#66ffffff</color>
     <color name="redbox_color">#e75252</color>
-
+    <!-- msd dialog -->
+    <color name="card_background">#ffffff</color>
+    <color name="card_shadow">#10000000</color>
+    <color name="lite_blue">#ff359ff2</color>
+    <color name="window_background">#00000000</color>
 
     <bool name="default_circle_indicator_centered">true</bool>
     <color name="default_circle_indicator_fill_color">#FFFFFFFF</color>

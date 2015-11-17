@@ -37,7 +37,12 @@
     <style name="SampleTheme" parent="@android:style/Theme.Holo.Light">
         <item name="android:dropDownListViewStyle">@style/TestSpinnerStyle</item>
     </style>
-
+    <style name="Dialog" parent="android:style/Theme.Dialog">
+        <item name="android:background">#00000000</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">true</item>
+    </style>
     <style name="main_menu_animstyle">
         <item name="android:windowEnterAnimation">@anim/photo_dialog_in_anim</item>
         <item name="android:windowExitAnimation">@anim/photo_dialog_out_anim</item>

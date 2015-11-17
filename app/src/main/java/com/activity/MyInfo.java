@@ -8,18 +8,23 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.v7.internal.widget.AdapterViewCompat;
 import android.support.v7.widget.Toolbar;
 import android.util.Base64;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
 import com.common.HavaSdCard;
+import com.custom.MaterialDialog;
 import com.leo.base.activity.LActivity;
 import com.leo.base.net.LReqEntity;
 import com.leo.base.util.L;
@@ -30,7 +35,9 @@ import com.xzdz.R;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -44,6 +51,12 @@ public class MyInfo extends LActivity implements View.OnClickListener {
     private Dialog dialog;
     private String logoBase;
     private String img;
+    private SimpleAdapter dialogAda;
+    private MaterialDialog materialDialog;
+    private String sex;
+    private String sexid;
+    private List<Map<String, String>> gender_list = new ArrayList<>();
+    private ListView listView;
     private static final String IMGURL = Environment
             .getExternalStorageDirectory() + "/Android/data/com.xzdz/";
 
@@ -57,6 +70,7 @@ public class MyInfo extends LActivity implements View.OnClickListener {
         setContentView(R.layout.activity_myinfo);
         initBar();
         initView();
+        setGender();
     }
 
     private void initBar() {
@@ -120,6 +134,11 @@ public class MyInfo extends LActivity implements View.OnClickListener {
         }
         if (id == R.id.rl_sex) {
             //性别
+            dialogAda = new SimpleAdapter(this, gender_list,
+                    R.layout.sex_item, new String[]{"name"},
+                    new int[]{R.id.tv});
+            dialogShow();
+            //dialogFlag = 0;
         }
         if (id == R.id.rl_brithday) {
             //生日
@@ -131,6 +150,59 @@ public class MyInfo extends LActivity implements View.OnClickListener {
             //邮箱
         }
 
+    }
+
+    // 性别选择
+    public void dialogShow() {
+        listView = new ListView(this);
+        float scale = getResources().getDisplayMetrics().density;
+        int dpAsPixels = (int) (8 * scale + 0.5f);
+        listView.setPadding(0, dpAsPixels, 0, dpAsPixels);
+        listView.setDividerHeight(0);
+        listView.setAdapter(dialogAda);
+        listView.setOverScrollMode(View.OVER_SCROLL_NEVER);
+        initClick();
+        materialDialog = new MaterialDialog(this).setTitle("请选择")
+                .setContentView(listView);
+        materialDialog.show();
+    }
+
+    //性别选择填充数据
+    public void setGender() {
+        Map<String, String> map = new HashMap<>();
+        map.put("id", "0");
+        map.put("name", "男");
+        gender_list.add(map);
+        map = new HashMap<>();
+        map.put("id", "1");
+        map.put("name", "女");
+        gender_list.add(map);
+        // gender_list.add("取消");
+    }
+
+    //性别选择的点击事件
+    private void initClick() {
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> parent, View view,
+                                    int position, long id) {
+
+                if (position == 0) {
+                    T.ss("您选择了：“男”");
+                    sex = gender_list.get(position).get("name");
+                    sexid = gender_list.get(position).get("id");
+                    tv_sex.setText(sex);
+                }
+                if (position == 1) {
+                    T.ss("您选择了：“女”");
+                    sex = gender_list.get(position).get("name");
+                    sexid = gender_list.get(position).get("id");
+                    tv_sex.setText(sex);
+                }
+
+                materialDialog.dismiss();
+
+            }
+        });
     }
 
     private void initDialog(View view) {

@@ -30,7 +30,7 @@ import java.util.Map;
  * Created by huisou on 2015/10/30.
  * 休闲
  */
-public class Vc_Releaxe extends LFragment {
+public class Vc_Releaxe extends LFragment implements ViewPager.OnPageChangeListener {
     private Button btn_next;
     private ViewPager viewPager;
     private List<Fragment> fragmentLists = new ArrayList<>();
@@ -87,6 +87,28 @@ public class Vc_Releaxe extends LFragment {
         viewPager.setPageMargin(width / -10);
         viewPager.setAdapter(new MyAdapter(Vc_Releaxe.this.getActivity().getSupportFragmentManager()));
         tv_text = (TextView) getActivity().findViewById(R.id.tv_text);
+        viewPager.setOnPageChangeListener(this);
+
+    }
+
+    @Override
+    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+        //viewPager.getChildAt(position).animate().scaleX(1f).scaleY(1f).start();
+        //arg0是表示你当前选中的页面，这事件是在你页面跳转完毕的时候调用的。
+
+
+    }
+
+    @Override
+    public void onPageSelected(int position) {
+        // viewPager.getChildAt(position).animate().scaleX(1f).scaleY(1f).start();
+        //表示在前一个页面滑动到后一个页面的时候，在前一个页面滑动前调用的方法。
+    }
+
+    @Override
+    public void onPageScrollStateChanged(int state) {
+        //arg0 ==1的时候表示正在滑动，arg0==2的时候表示滑动完毕了，arg0==0的时候表示什么都没做，就是停在那。
+      //  viewPager.getChildAt(2).animate().scaleX(1.1f).scaleY(1.1f).start();
 
     }
 

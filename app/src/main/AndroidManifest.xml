@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.xzdz">
 
+
     <application
         android:name="com.MyApplication"
         android:allowBackup="true"
@@ -168,11 +169,11 @@
         android:configChanges="orientation|keyboardHidden|navigation"
         android:exported="false"
         android:screenOrientation="behind"
-        android:windowSoftInputMode="adjustResize|stateHidden" >
-    </activity>
-
+        android:windowSoftInputMode="adjustResize|stateHidden"></activity>
     <!-- alipay sdk end -->
-
+    <!--添加可以向外拨打电话的权限  -->
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <!--sd卡的读写权限-->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"></uses-permission>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission>
 </manifest>
