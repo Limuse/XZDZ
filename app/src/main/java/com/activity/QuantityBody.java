@@ -1,16 +1,21 @@
 package com.activity;
 
+import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.custom.MyDatePickDialog;
 import com.leo.base.activity.LActivity;
 import com.leo.base.util.T;
 import com.xzdz.R;
+
+import java.util.Calendar;
 
 /**
  * Created by huisou on 2015/11/2.
@@ -56,19 +61,32 @@ public class QuantityBody extends LActivity implements View.OnClickListener {
         rl_province.setOnClickListener(this);
         rl_timed.setOnClickListener(this);
         rl_dtime.setOnClickListener(this);
+        btn_sure.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
-        int id=v.getId();
-        if(id==R.id.rl_address){
+        int id = v.getId();
+        if (id == R.id.rl_address) {
             T.ss("省市区");
         }
-        if(id==R.id.rl_time){
+        if (id == R.id.rl_time) {
             T.ss("年月日");
+            Calendar c = Calendar.getInstance();
+            MyDatePickDialog datePicker = new MyDatePickDialog(QuantityBody.this, new DatePickerDialog.OnDateSetListener() {
+                @Override
+                public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                    tv_dtime.setText(year + "年" + (monthOfYear + 1) + "月" + dayOfMonth + "日");
+                }
+            }, c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH));
+
+            datePicker.show();
         }
-        if(id==R.id.rl_timesd){
+        if (id == R.id.rl_timesd) {
             T.ss("预约时间段");
+        }
+        if (id == R.id.btn_sure) {
+            T.ss("确定");
         }
     }
 }

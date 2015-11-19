@@ -4,14 +4,15 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
 
+import com.common.Token;
 import com.handle.ActivityHandler;
 import com.leo.base.activity.LActivity;
 import com.leo.base.entity.LMessage;
 import com.leo.base.net.LReqEntity;
-import com.leo.base.util.LSharePreference;
 import com.leo.base.util.T;
 import com.xzdz.R;
 
@@ -43,12 +44,19 @@ public class UpdateName extends LActivity {
         toolbar.setNavigationIcon(R.mipmap.right_too);//左边图标
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.putExtra("name", "2");
-                setResult(5, intent);
+//                Intent intent = new Intent();
+//                intent.putExtra("name", "2");
+//                setResult(5, intent);
                 finish();
             }
         });
+    }
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+//        Intent intent = new Intent();
+//        intent.putExtra("name", "2");
+//        setResult(5, intent);
+        return super.onKeyDown(keyCode, event);
+
     }
     private void initView(){
         et_name=(EditText)findViewById(R.id.et_update_name);
@@ -56,16 +64,16 @@ public class UpdateName extends LActivity {
     }
 
     public void save(View view){
-        String name = et_name.getText().toString();
+        String name = et_name.getText().toString().trim();
         if (name.equals(null)) {
             T.ss("昵称不能为空！");
         } else {
             Map<String, String> map = new HashMap<>();
-            map.put("name", name);// 昵称
-            //map.put("uuid", Token.get(this));
+            map.put("username", name);// 昵称
+          //  map.put("uuid", Token.get(this));
             Resources res = getResources();
             String url = res.getString(R.string.app_service_url)
-                    + "/app/member/editusername/sign/aggregation";
+                    + "/app/member/editusername/sign/aggregation/"+Token.get(this);
             LReqEntity entity = new LReqEntity(url, map);
             ActivityHandler handler = new ActivityHandler(this);
             handler.startLoadingData(entity, 1);
@@ -88,19 +96,20 @@ public class UpdateName extends LActivity {
             JSONObject jsonObject = new JSONObject(data);
             int code = jsonObject.getInt("status");
             if (code == 1) {
-                T.ss("保存成功！");
-                Intent intent = new Intent();
-                String name = et_name.getText().toString();
-                if (name.equals(null)) {
-                    intent.putExtra("name", "1");
-                } else {
-                    intent.putExtra("name", et_name.getText().toString());
-                }
-                setResult(5, intent);
+                //T.ss("保存成功！");
+                T.ss(jsonObject.getString("info"));
+//                Intent intent = new Intent();
+//                String name = et_name.getText().toString();
+//                if (name.equals(null)) {
+//                    intent.putExtra("name", "1");
+//                } else {
+//                    intent.putExtra("name", et_name.getText().toString());
+//                }
+//                setResult(5, intent);
                 finish();
             } else {
                 T.ss(jsonObject.getString("info"));
-                String longs=jsonObject.getString("info");
+             //   String longs=jsonObject.getString("info");
 //                if(longs.equals("请先登录")){
 //                    LSharePreference.getInstance(this).setBoolean("login", false);
 //                    Intent intent = new Intent(this, LoginMain.class);

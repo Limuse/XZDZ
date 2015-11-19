@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.common.Token;
 import com.handle.ActivityHandler;
 import com.leo.base.activity.LActivity;
 import com.leo.base.entity.LMessage;
@@ -105,8 +106,8 @@ public class UpdatePwd extends LActivity implements View.OnClickListener {
             }
             else {
                 Resources res = getResources();
-                String url = res.getString(R.string.app_service_url) + "/app/member/editpassword/sign/aggregation/";
-                Map<String, String> map = new HashMap<String, String>();
+                String url = res.getString(R.string.app_service_url) + "/app/member/editpassword/sign/aggregation/"+Token.get(this);
+                Map<String, String> map = new HashMap<>();
                // map.put("uuid", Token.get(this));
                 map.put("opwd", oldpasswd);//oldpasswd 旧密码
                 map.put("pwd", passwd);// passwd 新密码
@@ -140,11 +141,11 @@ public class UpdatePwd extends LActivity implements View.OnClickListener {
             } else {
                 T.ss(jsonObject.getString("info"));
                 String longs=jsonObject.getString("info");
-                if(longs.equals("请先登录")){
-                    LSharePreference.getInstance(this).setBoolean("login", false);
-                    Intent intent = new Intent(this, LoginMain.class);
-                    startActivity(intent);
-                }
+//                if(longs.equals("请先登录")){
+//                    LSharePreference.getInstance(this).setBoolean("login", false);
+//                    Intent intent = new Intent(this, LoginMain.class);
+//                    startActivity(intent);
+//                }
             }
         } catch (JSONException e) {
             e.printStackTrace();

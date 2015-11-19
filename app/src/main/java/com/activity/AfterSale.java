@@ -163,7 +163,7 @@ public class AfterSale extends LActivity implements View.OnClickListener {
                         Bitmap bitmap = ImageSizeUtil.ImageHandle(IMGURL
                                 + pathSp.getString("path", nowTime));
                         bitmapList.add(bitmap);
-                        adapter.notifyDataSetChanged();
+                        initAda();
                     }
                     if (fileList.size() >= 9) {
                     }

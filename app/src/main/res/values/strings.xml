@@ -28,5 +28,7 @@
     <string name="app_imgfile">图片选择</string>
     <string name="app_updatename">修改昵称</string>
     <string name="app_updatenametrue">修改名称</string>
+    <string name="app_infphone">修改手机号</string>
+    <string name="app_infemails">修改邮箱</string>
     <string name="app_service_url">http://huihaokj.cn/</string>
 </resources>

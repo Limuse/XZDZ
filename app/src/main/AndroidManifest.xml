@@ -161,6 +161,16 @@
             android:name="com.activity.UpdateName"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait" />
+        <!--修改手机号-->
+        <activity
+            android:name="com.activity.InfPhone"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait" />
+        <!--修改邮箱-->
+        <activity
+            android:name="com.activity.InfEmail"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait" />
     </application>
 
     <!-- alipay sdk begin -->
@@ -176,4 +186,5 @@
     <!--sd卡的读写权限-->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"></uses-permission>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission>
+    <uses-permission android:name="android.permission.INTERNET" />
 </manifest>

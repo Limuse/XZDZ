@@ -1,5 +1,6 @@
 package com.activity;
 
+import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Intent;
 import android.content.res.Resources;
@@ -8,7 +9,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
-import android.support.v7.internal.widget.AdapterViewCompat;
 import android.support.v7.widget.Toolbar;
 import android.util.Base64;
 import android.view.View;
@@ -17,6 +17,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
@@ -24,8 +25,12 @@ import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
 import com.common.HavaSdCard;
+import com.common.Token;
 import com.custom.MaterialDialog;
+import com.custom.MyDatePickDialog;
+import com.handle.ActivityHandler;
 import com.leo.base.activity.LActivity;
+import com.leo.base.entity.LMessage;
 import com.leo.base.net.LReqEntity;
 import com.leo.base.util.L;
 import com.leo.base.util.T;
@@ -33,9 +38,14 @@ import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.xzdz.R;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -64,6 +74,8 @@ public class MyInfo extends LActivity implements View.OnClickListener {
 
     private DisplayImageOptions options;
     private ImageLoader imageLoader;
+    private String phones;
+    private String emails;
 
     @Override
     protected void onLCreate(Bundle bundle) {
@@ -115,6 +127,20 @@ public class MyInfo extends LActivity implements View.OnClickListener {
         rl7.setOnClickListener(this);
     }
 
+    private void initData() {
+///app/member/userinfo/sign/aggregation/uuid
+        Map<String, String> map = new HashMap<String, String>();
+        //L.e(img);
+        //map.put("uuid", Token.get(this));
+        Resources res = getResources();
+        String url = res.getString(R.string.app_service_url)
+                + "app/member/userinfo/sign/aggregation/" + Token.get(this);
+        LReqEntity entity = new LReqEntity(url);
+        ActivityHandler handler = new ActivityHandler(this);
+        handler.startLoadingData(entity, 4);
+
+    }
+
     @Override
     public void onClick(View v) {
         int id = v.getId();
@@ -125,7 +151,7 @@ public class MyInfo extends LActivity implements View.OnClickListener {
         if (id == R.id.rl_name) {
             //昵称
             Intent intent = new Intent(this, UpdateName.class);
-            startActivityForResult(intent, 5);
+            startActivity(intent);
         }
         if (id == R.id.rl_nametrue) {
             //真实姓名
@@ -133,21 +159,37 @@ public class MyInfo extends LActivity implements View.OnClickListener {
             startActivity(intent);
         }
         if (id == R.id.rl_sex) {
-            //性别
+            //性别1男2女
             dialogAda = new SimpleAdapter(this, gender_list,
                     R.layout.sex_item, new String[]{"name"},
                     new int[]{R.id.tv});
             dialogShow();
-            //dialogFlag = 0;
+
         }
         if (id == R.id.rl_brithday) {
-            //生日
+            //生日/app/member/editbirthday/sign/aggregation/
+            Calendar c = Calendar.getInstance();
+            MyDatePickDialog datePicker = new MyDatePickDialog(MyInfo.this, new DatePickerDialog.OnDateSetListener() {
+                @Override
+                public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                    tv_brithday.setText(year + "年" + (monthOfYear + 1) + "月" + dayOfMonth + "日");
+                    Btime();
+                }
+            }, c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH));
+
+            datePicker.show();
+
+
         }
         if (id == R.id.rl_phone) {
             //手机
+            Intent intent = new Intent(MyInfo.this, InfPhone.class);
+            startActivityForResult(intent, 5);
         }
         if (id == R.id.rl_mail) {
             //邮箱
+            Intent intent = new Intent(MyInfo.this, InfEmail.class);
+            startActivityForResult(intent, 6);
         }
 
     }
@@ -170,11 +212,11 @@ public class MyInfo extends LActivity implements View.OnClickListener {
     //性别选择填充数据
     public void setGender() {
         Map<String, String> map = new HashMap<>();
-        map.put("id", "0");
+        map.put("id", "1");
         map.put("name", "男");
         gender_list.add(map);
         map = new HashMap<>();
-        map.put("id", "1");
+        map.put("id", "2");
         map.put("name", "女");
         gender_list.add(map);
         // gender_list.add("取消");
@@ -187,22 +229,26 @@ public class MyInfo extends LActivity implements View.OnClickListener {
                                     int position, long id) {
 
                 if (position == 0) {
-                    T.ss("您选择了：“男”");
                     sex = gender_list.get(position).get("name");
                     sexid = gender_list.get(position).get("id");
                     tv_sex.setText(sex);
+                    // T.ss(sexid);
+                    sex();
                 }
                 if (position == 1) {
-                    T.ss("您选择了：“女”");
                     sex = gender_list.get(position).get("name");
                     sexid = gender_list.get(position).get("id");
                     tv_sex.setText(sex);
+                    //T.ss(sexid);
+                    sex();
                 }
 
                 materialDialog.dismiss();
 
             }
         });
+
+
     }
 
     private void initDialog(View view) {
@@ -313,29 +359,29 @@ public class MyInfo extends LActivity implements View.OnClickListener {
                 }
                 dialog.cancel();
                 break;
-//            case 5:
-//                String name = data.getExtras().getString("name");
-//                if (name.equals("1")) {
-//                    tv_name.setText(names);
-//                } else if (name.equals("2")) {
-//                    tv_name.setText(names);
-//                } else {
-//                    tv_name.setText(name);
-//                    names = name;
-//                }
-//                break;
-//            case 6:
-//                String sdnum = data.getExtras().getString("sdnum");
-//
-//                if (sdnum.equals("1")) {
-//                    tv_num.setText("");
-//                } else if (sdnum.equals("2")) {
-//                    tv_num.setText("");
-//                } else {
-//                    tv_num.setText(sdnum);
-//                    names = sdnum;
-//                }
-//                break;
+            case 5:
+                String phone = data.getExtras().getString("phone");
+                if (phone.equals("1")) {
+                    tv_phone.setText(phone);
+                } else if (phone.equals("2")) {
+                    //  tv_phone.setText(phones);
+                } else {
+                    tv_phone.setText(phone);
+                    // phones = phone;
+                }
+                break;
+            case 6:
+                String email = data.getExtras().getString("email");
+
+                if (email.equals("1")) {
+                    tv_mail.setText(email);
+                } else if (email.equals("2")) {
+                    tv_mail.setText("");
+                } else {
+                    tv_mail.setText(email);
+                    //emails = email;
+                }
+                break;
             default:
                 break;
         }
@@ -343,16 +389,153 @@ public class MyInfo extends LActivity implements View.OnClickListener {
 
     private void picloade() {
 
-//        Map<String, String> map = new HashMap<String, String>();
-//        map.put("pictures", img);// 头像
-//        map.put("uuid", Token.get(this));
-//        Resources res = getResources();
-//        String url = res.getString(R.string.app_service_url)
-//                + "/huihao/member/amendavatar/1/sign/aggregation/";
-//        LReqEntity entity = new LReqEntity(url, map);
-//        ActivityHandler handler = new ActivityHandler(this);
-//        handler.startLoadingData(entity, 1);
+        Map<String, String> map = new HashMap<String, String>();
+        map.put("pictures", img);// 头像
+        //L.e(img);
+        //map.put("uuid", Token.get(this));
+        Resources res = getResources();
+        String url = res.getString(R.string.app_service_url)
+                + "/app/member/editavatar/sign/aggregation/" + Token.get(this);
+        LReqEntity entity = new LReqEntity(url, map);
+        ActivityHandler handler = new ActivityHandler(this);
+        handler.startLoadingData(entity, 1);
 
+    }
+
+
+    private void getJsonData(String data) {
+        try {
+            JSONObject jsonObject = new JSONObject(data);
+            int code = jsonObject.getInt("status");
+            if (code == 1) {
+                //T.ss("图片已上传");
+                T.ss(jsonObject.getString("info"));
+            } else {
+                T.ss(jsonObject.getString("info"));
+                String longs = jsonObject.getString("info");
+//                if (longs.equals("请先登录")) {
+//                    Intent intent = new Intent(this, LoginMain.class);
+//                    startActivity(intent);
+//                }
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    //性别
+    private void sex() {
+        if (!sexid.equals(null)) {
+            Map<String, String> map = new HashMap<>();
+            //map.put("uuid", Token.get(this));
+            map.put("sex", sexid.trim());// 性别
+            Resources res = getResources();
+            String url = res.getString(R.string.app_service_url)
+                    + "/app/member/editsex/sign/aggregation/" + Token.get(this);
+            LReqEntity entity = new LReqEntity(url, map);
+            ActivityHandler handler = new ActivityHandler(this);
+            handler.startLoadingData(entity, 2);
+        }
+
+    }
+
+    private void getJsonsex(String data) {
+        try {
+            JSONObject jsonObject = new JSONObject(data);
+            int code = jsonObject.getInt("status");
+            if (code == 1) {
+                T.ss(jsonObject.getString("info"));
+            } else {
+                T.ss(jsonObject.getString("info"));
+                //    String longs = jsonObject.getString("info");
+//                if (longs.equals("请先登录")) {
+//                    Intent intent = new Intent(this, LoginMain.class);
+//                    startActivity(intent);
+//                }
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    //生日
+    private void Btime() {
+
+        Map<String, String> map = new HashMap<>();
+        //map.put("uuid", Token.get(this));
+        map.put("birthday", tv_brithday.getText().toString());// 生日
+        Resources res = getResources();
+        String url = res.getString(R.string.app_service_url)
+                + "/app/member/editbirthday/sign/aggregation/" + Token.get(this);
+        LReqEntity entity = new LReqEntity(url, map);
+        ActivityHandler handler = new ActivityHandler(this);
+        handler.startLoadingData(entity, 3);
+
+
+    }
+
+    private void getJsontime(String data) {
+        try {
+            JSONObject jsonObject = new JSONObject(data);
+            int code = jsonObject.getInt("status");
+            if (code == 1) {
+                T.ss(jsonObject.getString("info"));
+            } else {
+                T.ss(jsonObject.getString("info"));
+                //String longs = jsonObject.getString("info");
+//                if (longs.equals("请先登录")) {
+//                    Intent intent = new Intent(this, LoginMain.class);
+//                    startActivity(intent);
+//                }
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // 返回获取的网络数据
+    public void onResultHandler(LMessage msg, int requestId) {
+        super.onResultHandler(msg, requestId);
+        if (msg != null) {
+            if (requestId == 1) {
+                getJsonData(msg.getStr());
+            } else if (requestId == 2) {
+                getJsonsex(msg.getStr());
+            } else if (requestId == 3) {
+                getJsontime(msg.getStr());
+            } else if (requestId == 4) {
+                getJsoninf(msg.getStr());
+            } else {
+                T.ss("获取数据失败");
+            }
+        }
+    }
+
+    private void getJsoninf(String data) {
+        try {
+            JSONObject jsonObject = new JSONObject(data);
+            int code = jsonObject.getInt("status");
+            if (code == 1) {
+                JSONArray jsonArray = jsonObject.getJSONArray("list");
+//                id: 1
+//                username: 叶子
+//                truename: 唯一
+//                sex: 1
+//                email: 123456@qq.com
+//                mobile: 13543456789
+//                birthday: 2010
+
+            } else {
+                T.ss(jsonObject.getString("info"));
+                //String longs = jsonObject.getString("info");
+//                if (longs.equals("请先登录")) {
+//                    Intent intent = new Intent(this, LoginMain.class);
+//                    startActivity(intent);
+//                }
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
     private void showBuyDialog() {
