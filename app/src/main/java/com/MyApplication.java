@@ -90,5 +90,4 @@ public class MyApplication extends LApplication {
         return instance;
     }
 
-
 }

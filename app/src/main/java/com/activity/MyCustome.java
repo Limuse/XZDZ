@@ -6,6 +6,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import com.adapter.MyCustomeAdapterPager;
+import com.common.Token;
 import com.custom.PagerSlidingTabStrip;
 import com.leo.base.activity.LActivity;
 import com.xzdz.R;

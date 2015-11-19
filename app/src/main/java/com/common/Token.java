@@ -11,7 +11,7 @@ public class Token {
 
 
     public static String get(Context context) {
-        return LSharePreference.getInstance(context).getString("token");
+        return LSharePreference.getInstance(context).getString("token","33f3e6d26a5bf2fa32c894d76937893c");
     }
 
     public static void set(Context context, String token) {

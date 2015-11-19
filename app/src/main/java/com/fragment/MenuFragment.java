@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -33,7 +34,6 @@ import com.leo.base.activity.LActivity;
 import com.leo.base.activity.fragment.LFragment;
 import com.xzdz.R;
 
-@SuppressLint("ValidFragment")
 public class MenuFragment extends LFragment implements View.OnClickListener{
 
 	private SlidingMenu slidingMenu;

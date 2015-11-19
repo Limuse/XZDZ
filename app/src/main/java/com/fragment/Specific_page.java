@@ -35,11 +35,11 @@ public class Specific_page extends LFragment {
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        container = (ViewGroup) inflater.inflate(
-                R.layout.fragment_specific_page_view, null);
-        total = inflater.inflate(R.layout.fragment_specific_page, null);
-        container.addView(total);
-        return container;
+        total = (ViewGroup) inflater.inflate(
+                R.layout.fragment_specific_page, null);
+//        total = inflater.inflate(R.layout.fragment_specific_page, null);
+//        container.addView(total);
+        return total;
     }
 
     @Override
