@@ -171,6 +171,11 @@
             android:name="com.activity.InfEmail"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait" />
+        <!--省市区-->
+        <activity
+            android:name="com.activity.ProviceInfoPlace"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait" />
     </application>
 
     <!-- alipay sdk begin -->

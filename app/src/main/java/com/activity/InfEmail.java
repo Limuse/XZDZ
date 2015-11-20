@@ -16,6 +16,7 @@ import com.handle.ActivityHandler;
 import com.leo.base.activity.LActivity;
 import com.leo.base.entity.LMessage;
 import com.leo.base.net.LReqEntity;
+import com.leo.base.util.L;
 import com.leo.base.util.T;
 import com.xzdz.R;
 
@@ -54,6 +55,7 @@ public class InfEmail extends LActivity {
             }
         });
     }
+
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         Intent intent = new Intent();
         intent.putExtra("email", "2");
@@ -69,20 +71,24 @@ public class InfEmail extends LActivity {
 
     public void save(View v) {
         String email = et_email.getText().toString();
+
         if (email.equals(null)) {
             T.ss("昵称不能为空！");
         } else {
             Map<String, String> map = new HashMap<>();
             map.put("email", email);// 邮箱
+            L.e(email);
             //map.put("uuid", Token.get(this));
             Resources res = getResources();
             String url = res.getString(R.string.app_service_url)
-                    + "/app/member/editemail/sign/aggregation/"+Token.get(this);
+                    + "/app/member/editemail/sign/aggregation/" + Token.get(this);
             LReqEntity entity = new LReqEntity(url, map);
             ActivityHandler handler = new ActivityHandler(this);
             handler.startLoadingData(entity, 1);
+            L.e(entity.toString());
         }
     }
+
     // 返回获取的网络数据
     public void onResultHandler(LMessage msg, int requestId) {
         super.onResultHandler(msg, requestId);
@@ -112,7 +118,7 @@ public class InfEmail extends LActivity {
                 finish();
             } else {
                 T.ss(jsonObject.getString("info"));
-               // String longs=jsonObject.getString("info");
+                // String longs=jsonObject.getString("info");
 //                if(longs.equals("请先登录")){
 //                    LSharePreference.getInstance(this).setBoolean("login", false);
 //                    Intent intent = new Intent(this, LoginMain.class);

@@ -25,6 +25,7 @@ public class Phone extends LActivity {
     }
 
     private void initBar() {
+        final String ids = getIntent().getExtras().getString("id");
         // Bar.setTrans(this);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbars);
         toolbar.setTitle(getResources().getText(R.string.app_phones));
@@ -33,7 +34,14 @@ public class Phone extends LActivity {
         toolbar.setNavigationIcon(R.mipmap.right_too);//左边图标
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                finish();
+                if (ids.equals("1")) {
+                    finish();
+                } else {
+                    Intent intent = new Intent();
+                    intent.putExtra("phone", tv2.getText().toString());
+                    setResult(5, intent);
+                    finish();
+                }
             }
         });
 

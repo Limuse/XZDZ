@@ -83,6 +83,13 @@
                 android:textColor="@color/app_text_dark"
                 android:textSize="@dimen/app_text_big" />
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_marginLeft="@dimen/app_myself_left_mar"
+                android:layout_marginRight="@dimen/app_myself_left_mar"
+                android:background="@color/app_background" />
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/app_toolbar">
@@ -124,14 +131,18 @@
                 android:clickable="true">
 
 
-                <TextView
+                <EditText
                     android:id="@+id/tv_bbb"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="30dp"
-                    android:text="省、市、区"
-                    android:textColor="@color/app_text_light"
+                    android:background="@android:color/transparent"
+                    android:enabled="true"
+                    android:focusable="false"
+                    android:gravity="center_vertical"
+                    android:hint="省、市、区"
+                    android:textColor="@color/app_text_dark"
                     android:textSize="@dimen/app_myself_tex" />
 
                 <ImageView
@@ -212,14 +223,18 @@
                 android:clickable="true">
 
 
-                <TextView
+                <EditText
                     android:id="@+id/tv_day"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="30dp"
-                    android:text="年、月、日"
-                    android:textColor="@color/app_text_light"
+                    android:background="@android:color/transparent"
+                    android:enabled="true"
+                    android:focusable="false"
+                    android:gravity="center_vertical"
+                    android:hint="年、月、日"
+                    android:textColor="@color/app_text_dark"
                     android:textSize="@dimen/app_myself_tex" />
 
                 <ImageView
@@ -247,14 +262,17 @@
                 android:clickable="true">
 
 
-                <TextView
+                <EditText
                     android:id="@+id/tv_daysd"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="30dp"
-                    android:text="预约时间段"
-                    android:textColor="@color/app_text_light"
+                    android:hint="预约时间段"
+                    android:background="@android:color/transparent"
+                    android:enabled="true"
+                    android:focusable="false"
+                    android:textColor="@color/app_text_dark"
                     android:textSize="@dimen/app_myself_tex" />
 
                 <ImageView
@@ -278,14 +296,14 @@
                 android:id="@+id/btn_sure"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/app_bottom"
+                android:layout_marginBottom="10dp"
                 android:layout_marginLeft="@dimen/app_myself_left_mar"
                 android:layout_marginRight="@dimen/app_myself_left_mar"
                 android:layout_marginTop="48dp"
                 android:background="@drawable/btn_save"
                 android:text="确  定"
                 android:textColor="@color/app_white"
-                android:textSize="@dimen/app_text_big"
-                android:layout_marginBottom="10dp"/>
+                android:textSize="@dimen/app_text_big" />
 
         </LinearLayout>
 

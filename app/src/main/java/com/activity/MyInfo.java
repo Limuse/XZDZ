@@ -56,7 +56,7 @@ import java.util.Map;
  */
 public class MyInfo extends LActivity implements View.OnClickListener {
     private RelativeLayout rl1, rl2, rl3, rl4, rl5, rl6, rl7;
-    private TextView tv_sex, tv_brithday, tv_phone, tv_mail;
+    private TextView tv_sex, tv_brithday, tv_phone, tv_mail, tv_ncname, tv_namet;
     private ImageView my_imgs;
     private Dialog dialog;
     private String logoBase;
@@ -65,6 +65,7 @@ public class MyInfo extends LActivity implements View.OnClickListener {
     private MaterialDialog materialDialog;
     private String sex;
     private String sexid;
+    private String ncname, nametr;
     private List<Map<String, String>> gender_list = new ArrayList<>();
     private ListView listView;
     private static final String IMGURL = Environment
@@ -83,6 +84,7 @@ public class MyInfo extends LActivity implements View.OnClickListener {
         initBar();
         initView();
         setGender();
+        initData();
     }
 
     private void initBar() {
@@ -112,6 +114,8 @@ public class MyInfo extends LActivity implements View.OnClickListener {
         tv_brithday = (TextView) findViewById(R.id.tv_bridthday);
         tv_phone = (TextView) findViewById(R.id.tv_phone);
         tv_mail = (TextView) findViewById(R.id.tv_mial);
+        tv_ncname = (TextView) findViewById(R.id.tv_nec);
+        tv_namet = (TextView) findViewById(R.id.tv_tne);
         View view = getLayoutInflater().inflate(R.layout.pic_show, null);
         dialog = new Dialog(this,
                 R.style.transparentFrameWindowStyle);
@@ -128,7 +132,7 @@ public class MyInfo extends LActivity implements View.OnClickListener {
     }
 
     private void initData() {
-///app/member/userinfo/sign/aggregation/uuid
+        ///app/member/userinfo/sign/aggregation/uuid
         Map<String, String> map = new HashMap<String, String>();
         //L.e(img);
         //map.put("uuid", Token.get(this));
@@ -151,12 +155,12 @@ public class MyInfo extends LActivity implements View.OnClickListener {
         if (id == R.id.rl_name) {
             //昵称
             Intent intent = new Intent(this, UpdateName.class);
-            startActivity(intent);
+            startActivityForResult(intent, 7);
         }
         if (id == R.id.rl_nametrue) {
             //真实姓名
             Intent intent = new Intent(this, UpdateNameTrue.class);
-            startActivity(intent);
+            startActivityForResult(intent, 8);
         }
         if (id == R.id.rl_sex) {
             //性别1男2女
@@ -183,7 +187,8 @@ public class MyInfo extends LActivity implements View.OnClickListener {
         }
         if (id == R.id.rl_phone) {
             //手机
-            Intent intent = new Intent(MyInfo.this, InfPhone.class);
+            Intent intent = new Intent(MyInfo.this, Phone.class);
+            intent.putExtra("id", "0");
             startActivityForResult(intent, 5);
         }
         if (id == R.id.rl_mail) {
@@ -364,10 +369,10 @@ public class MyInfo extends LActivity implements View.OnClickListener {
                 if (phone.equals("1")) {
                     tv_phone.setText(phone);
                 } else if (phone.equals("2")) {
-                    //  tv_phone.setText(phones);
+                    tv_phone.setText(phones);
                 } else {
                     tv_phone.setText(phone);
-                    // phones = phone;
+                    phones = phone;
                 }
                 break;
             case 6:
@@ -379,7 +384,31 @@ public class MyInfo extends LActivity implements View.OnClickListener {
                     tv_mail.setText("");
                 } else {
                     tv_mail.setText(email);
-                    //emails = email;
+                    emails = email;
+                }
+                break;
+            case 7:
+                String name = data.getExtras().getString("name");
+
+                if (name.equals("1")) {
+                    tv_ncname.setText(name);
+                } else if (name.equals("2")) {
+                    tv_ncname.setText("");
+                } else {
+                    tv_ncname.setText(name);
+                    ncname = name;
+                }
+                break;
+            case 8:
+                String nametrue = data.getExtras().getString("name");
+
+                if (nametrue.equals("1")) {
+                    tv_namet.setText(nametrue);
+                } else if (nametrue.equals("2")) {
+                    tv_namet.setText("");
+                } else {
+                    tv_namet.setText(nametrue);
+                    nametr = nametrue;
                 }
                 break;
             default:
@@ -516,7 +545,8 @@ public class MyInfo extends LActivity implements View.OnClickListener {
             JSONObject jsonObject = new JSONObject(data);
             int code = jsonObject.getInt("status");
             if (code == 1) {
-                JSONArray jsonArray = jsonObject.getJSONArray("list");
+                JSONObject jsonO = jsonObject.getJSONObject("list");
+
 //                id: 1
 //                username: 叶子
 //                truename: 唯一
@@ -524,6 +554,44 @@ public class MyInfo extends LActivity implements View.OnClickListener {
 //                email: 123456@qq.com
 //                mobile: 13543456789
 //                birthday: 2010
+                if (jsonO.length() > 0) {
+
+                    String id = jsonO.getString("id");
+                    String username = jsonO.getString("username");
+                    if (!username.equals(null)) {
+                        ncname = username;
+                    } else {
+                        ncname = "";
+                    }
+                    tv_ncname.setText(ncname);
+                    String truename = jsonO.getString("truename");
+                    if (!truename.equals(null)) {
+                        nametr = truename;
+                    } else {
+                        nametr = "";
+                    }
+                    tv_namet.setText(nametr);
+                    String sexs = jsonO.getString("sex");
+                    if (!sexs.equals(null)) {
+                        if (sexs.equals("1")) {
+                            sex = "男";
+                        } else if (sexs.equals("2")) {
+                            sex = "女";
+                        }
+                    } else {
+                        sex = "";
+                    }
+                    tv_sex.setText(sex);
+                    String email = jsonO.getString("email");
+                    emails = email;
+                    tv_mail.setText(emails);
+                    String mobile = jsonO.getString("mobile");
+                    phones = mobile;
+                    tv_phone.setText(phones);
+                    String birthday = jsonO.getString("birthday");
+                    tv_brithday.setText(birthday);
+                }
+
 
             } else {
                 T.ss(jsonObject.getString("info"));

@@ -1,6 +1,7 @@
 package com.activity;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -23,9 +24,10 @@ import java.util.Calendar;
  */
 public class QuantityBody extends LActivity implements View.OnClickListener {
     private RelativeLayout rl_province, rl_timed, rl_dtime;
-    private EditText et_name, et_phone, et_xaddr;
+    private EditText et_name, et_phone, et_xaddr,tv_province,tv_ymd;
     private Button btn_sure;
-    private TextView tv_province, tv_dtime;
+    private TextView  tv_dtime;
+    private String provinceID,cityID,countryID;
 
     @Override
     protected void onLCreate(Bundle bundle) {
@@ -56,8 +58,9 @@ public class QuantityBody extends LActivity implements View.OnClickListener {
         et_phone = (EditText) findViewById(R.id.et_phone);
         et_xaddr = (EditText) findViewById(R.id.et_xxaddr);
         btn_sure = (Button) findViewById(R.id.btn_sure);
-        tv_province = (TextView) findViewById(R.id.tv_bbb);
+        tv_province = (EditText) findViewById(R.id.tv_bbb);
         tv_dtime = (TextView) findViewById(R.id.tv_daysd);
+        tv_ymd=(EditText)findViewById(R.id.tv_day);
         rl_province.setOnClickListener(this);
         rl_timed.setOnClickListener(this);
         rl_dtime.setOnClickListener(this);
@@ -69,14 +72,16 @@ public class QuantityBody extends LActivity implements View.OnClickListener {
         int id = v.getId();
         if (id == R.id.rl_address) {
             T.ss("省市区");
+            Intent intent=new Intent(this,ProviceInfoPlace.class);
+            startActivityForResult(intent, 1);
         }
         if (id == R.id.rl_time) {
-            T.ss("年月日");
+            //T.ss("年月日");
             Calendar c = Calendar.getInstance();
             MyDatePickDialog datePicker = new MyDatePickDialog(QuantityBody.this, new DatePickerDialog.OnDateSetListener() {
                 @Override
                 public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                    tv_dtime.setText(year + "年" + (monthOfYear + 1) + "月" + dayOfMonth + "日");
+                    tv_ymd.setText(year + "年" + (monthOfYear + 1) + "月" + dayOfMonth + "日");
                 }
             }, c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH));
 
@@ -87,6 +92,27 @@ public class QuantityBody extends LActivity implements View.OnClickListener {
         }
         if (id == R.id.btn_sure) {
             T.ss("确定");
+        }
+    }
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode) {
+
+            case 1:
+                if (data != null) {
+                    String name = data.getExtras().getString("name");
+                    tv_province.setText(name);
+                    provinceID = data.getExtras().getString("pid"); // 省ID
+                    cityID = data.getExtras().getString("cityid");   //  市ID
+                    if(data.getExtras().getString("countryid")==null){
+                        countryID=null;
+                    }else {
+                        countryID = data.getExtras().getString("countryid"); // 区ID
+                    }
+                }
+                break;
+            default:
+                break;
         }
     }
 }

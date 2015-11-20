@@ -44,17 +44,17 @@ public class UpdateName extends LActivity {
         toolbar.setNavigationIcon(R.mipmap.right_too);//左边图标
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-//                Intent intent = new Intent();
-//                intent.putExtra("name", "2");
-//                setResult(5, intent);
+                Intent intent = new Intent();
+                intent.putExtra("name", "2");
+                setResult(7, intent);
                 finish();
             }
         });
     }
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-//        Intent intent = new Intent();
-//        intent.putExtra("name", "2");
-//        setResult(5, intent);
+        Intent intent = new Intent();
+        intent.putExtra("name", "2");
+        setResult(7, intent);
         return super.onKeyDown(keyCode, event);
 
     }
@@ -98,14 +98,14 @@ public class UpdateName extends LActivity {
             if (code == 1) {
                 //T.ss("保存成功！");
                 T.ss(jsonObject.getString("info"));
-//                Intent intent = new Intent();
-//                String name = et_name.getText().toString();
-//                if (name.equals(null)) {
-//                    intent.putExtra("name", "1");
-//                } else {
-//                    intent.putExtra("name", et_name.getText().toString());
-//                }
-//                setResult(5, intent);
+                Intent intent = new Intent();
+                String name = et_name.getText().toString();
+                if (name.equals(null)) {
+                    intent.putExtra("name", "1");
+                } else {
+                    intent.putExtra("name", et_name.getText().toString());
+                }
+                setResult(7, intent);
                 finish();
             } else {
                 T.ss(jsonObject.getString("info"));

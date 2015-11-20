@@ -56,7 +56,8 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/app_toolbar"
             android:background="@drawable/btn_press"
-            android:clickable="true">
+            android:clickable="true"
+            android:visibility="gone">
 
 
             <TextView

@@ -80,6 +80,18 @@
                 android:textColor="@color/app_text_dark"
                 android:textSize="@dimen/app_myself_tex" />
 
+            <TextView
+                android:id="@+id/tv_nec"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/app_setting_right"
+                android:layout_toLeftOf="@+id/img_right1"
+                android:gravity="center"
+                android:text=""
+                android:textColor="@color/app_text_light"
+                android:textSize="@dimen/app_myself_tex" />
+
             <ImageView
                 android:id="@+id/img_right1"
                 android:layout_width="@dimen/app_myself_right_image"
@@ -112,6 +124,18 @@
                 android:layout_marginLeft="@dimen/app_myself_left_mar"
                 android:text="真实姓名"
                 android:textColor="@color/app_text_dark"
+                android:textSize="@dimen/app_myself_tex" />
+
+            <TextView
+                android:id="@+id/tv_tne"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/app_setting_right"
+                android:layout_toLeftOf="@+id/img_right2"
+                android:gravity="center"
+                android:text=""
+                android:textColor="@color/app_text_light"
                 android:textSize="@dimen/app_myself_tex" />
 
             <ImageView

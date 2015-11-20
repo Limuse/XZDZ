@@ -69,6 +69,7 @@ public class Set extends LActivity implements View.OnClickListener {
         if (id == R.id.rl_phones) {
             //手机绑定
             Intent intent = new Intent(this, Phone.class);
+            intent.putExtra("id","1");
             startActivity(intent);
         }
         if (id == R.id.rl_clear) {

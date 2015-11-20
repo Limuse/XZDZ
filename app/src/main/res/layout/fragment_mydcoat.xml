@@ -13,7 +13,8 @@
             android:id="@+id/dcoat_img"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@mipmap/ic_launcher"/>
+            android:paddingBottom="90dp"
+            android:src="@mipmap/code"/>
 
         <Button
             android:id="@+id/next4"
