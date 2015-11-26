@@ -13,11 +13,13 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.common.Bar;
+import com.common.Token;
 import com.common.UntilList;
 import com.handle.ActivityHandler;
 import com.leo.base.activity.LActivity;
 import com.leo.base.entity.LMessage;
 import com.leo.base.net.LReqEntity;
+import com.leo.base.util.L;
 import com.leo.base.util.T;
 import com.umeng.socialize.bean.SHARE_MEDIA;
 import com.umeng.socialize.controller.UMServiceFactory;
@@ -74,7 +76,7 @@ public class Registered extends LActivity {
         toolbar.setTitle(getResources().getText(R.string.app_registered));
         toolbar.setTitleTextColor(getResources().getColor(R.color.app_white));
         toolbar.setBackgroundColor(Color.parseColor("#00ffffff"));
-//        toolbar.setNavigationIcon(R.mipmap.back_white);
+        toolbar.setNavigationIcon(R.mipmap.back_white);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 finish();
@@ -99,7 +101,7 @@ public class Registered extends LActivity {
             time = 60;
             flag = true;
             getTime();
-            String url = getResources().getString(R.string.app_service_url) + "/huihao/register/captchas/1/sign/aggregation/";
+            String url = getResources().getString(R.string.app_service_url) + "/app/register/smsverify/sign/aggregation/";
             ActivityHandler handler = new ActivityHandler(this);
             Map<String, String> map = new HashMap<String, String>();
             map.put("mobile", et_user.getText().toString().trim());
@@ -121,11 +123,6 @@ public class Registered extends LActivity {
             else if (requestId ==3) {
                 getOrdersData(msg.getStr());
             }
-            else {
-                T.ss("参数ID错误");
-            }
-        } else {
-            T.ss("数据获取失败");
         }
     }
     private void getOrdersData(String data) {
@@ -176,7 +173,7 @@ public class Registered extends LActivity {
             if (status == 1) {
                 T.ss("注册成功");
                 finish();
-                    String url = getResources().getString(R.string.app_service_url) + "/huihao/orders/denomination/1/sign/aggregation/";
+//                    String url = getResources().getString(R.string.app_service_url) + "/huihao/orders/denomination/1/sign/aggregation/";
 //                ActivityHandler handler = new ActivityHandler(Registered.this);
 //                Map<String, String> map = new HashMap<String, String>();
 //                map.put("uuid", Token.get(Registered.this));
@@ -222,7 +219,7 @@ public class Registered extends LActivity {
         }
 
         ActivityHandler handler = new ActivityHandler(this);
-        String url = getResources().getString(R.string.app_service_url) + "/huihao/register/registerexecute/1/sign/aggregation/";
+        String url = getResources().getString(R.string.app_service_url) + "app/register/register/sign/aggregation/";
         Map<String, String> map = new HashMap<String, String>();
         map.put("mobile", et_user.getText().toString().trim());
         map.put("captcha", et_code.getText().toString().trim());

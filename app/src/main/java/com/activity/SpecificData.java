@@ -1,5 +1,6 @@
 package com.activity;
 
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -12,11 +13,26 @@ import android.view.WindowManager;
 import android.widget.GridView;
 import android.widget.SimpleAdapter;
 
+import com.MyApplication;
+import com.alibaba.fastjson.JSON;
 import com.common.Bar;
+import com.common.Token;
 import com.custom.CirclePageIndicator;
+import com.entity.SpecificEntity;
 import com.fragment.Specific_page;
+import com.handle.ActivityHandler;
 import com.leo.base.activity.LActivity;
+import com.leo.base.entity.LMessage;
+import com.leo.base.net.LReqEntity;
+import com.leo.base.util.L;
+import com.leo.base.util.T;
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.assist.ImageScaleType;
 import com.xzdz.R;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -32,13 +48,59 @@ public class SpecificData extends LActivity {
     private CirclePageIndicator indicator;
     private ViewPager viewPager;
     private List<Fragment> fragmentList = new ArrayList<Fragment>();
-    private List<Map<String, String>> specInfo = new ArrayList<Map<String, String>>();
+    private SpecificEntity specificEntity;
+
+    public static DisplayImageOptions options;
+    public static ImageLoader imageLoader;
 
     protected void onLCreate(Bundle bundle) {
         setContentView(R.layout.activity_specificdata);
+        if (imageLoader == null) {
+            imageLoader = MyApplication.getInstance().getImageLoader();
+        }
+        options = new DisplayImageOptions.Builder().cacheInMemory(false)
+                .cacheOnDisk(true).bitmapConfig(Bitmap.Config.RGB_565)
+                .imageScaleType(ImageScaleType.EXACTLY_STRETCHED)
+                .build();
         initBar();
         initView();
-        initPage();
+        initData();
+
+    }
+
+    private void initData() {
+        ActivityHandler handler = new ActivityHandler(this);
+        String url = getResources().getString(R.string.app_service_url) + "/app/member/suituser_info/sign/aggregation/";
+        Map<String, String> map = new HashMap<String, String>();
+        map.put("uuid", Token.get(mContext));
+        LReqEntity entity = new LReqEntity(url, map);
+        handler.startLoadingData(entity, 1);
+    }
+
+    public void onResultHandler(LMessage msg, int requestId) {
+        super.onResultHandler(msg, requestId);
+        if (msg != null) {
+            if (requestId == 1) {
+                getData(msg.getStr());
+            }
+        }
+    }
+
+    public void getData(String str) {
+        try {
+            JSONObject jsonObject = new JSONObject(str);
+            int status = jsonObject.getInt("status");
+            if (status == 1) {
+                specificEntity = JSON.parseObject(str, SpecificEntity.class);
+                initPage();
+            } else {
+                T.ss(jsonObject.getString("msg"));
+            }
+        } catch (Exception e) {
+
+        }
+
+
     }
 
     private void initBar() {
@@ -60,9 +122,9 @@ public class SpecificData extends LActivity {
     }
 
     private void initPage() {
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < specificEntity.getList().size(); i++) {
             Specific_page fragmentSpecificPage = new Specific_page();
-//            fragmentSpecificPage.getData(specInfo.get(i));
+            fragmentSpecificPage.getData(specificEntity.getList().get(i));
             fragmentList.add(fragmentSpecificPage);
         }
         WindowManager wm = getWindowManager();

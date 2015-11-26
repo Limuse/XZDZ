@@ -23,7 +23,7 @@ import java.util.ArrayList;
 /**
  * 广告图片自动轮播控件</br>
  */
-public class ImageCycleView extends LinearLayout {
+public class ImageCycleViewRight extends LinearLayout {
     /**
      * 上下文
      */
@@ -70,7 +70,7 @@ public class ImageCycleView extends LinearLayout {
     /**
      * @param context
      */
-    public ImageCycleView(Context context) {
+    public ImageCycleViewRight(Context context) {
         super(context);
     }
 
@@ -86,11 +86,11 @@ public class ImageCycleView extends LinearLayout {
      */
 
 
-    public ImageCycleView(Context context, AttributeSet attrs) {
+    public ImageCycleViewRight(Context context, AttributeSet attrs) {
         super(context, attrs);
         mContext = context;
         mScale = context.getResources().getDisplayMetrics().density;
-        LayoutInflater.from(context).inflate(R.layout.ad_cycle_view, this);
+        LayoutInflater.from(context).inflate(R.layout.ad_cycle_view2, this);
         mAdvPager = (ViewPager) findViewById(R.id.adv_pager);
         mAdvPager.setOnPageChangeListener(new GuidePageChangeListener());
         mAdvPager.setOnTouchListener(new OnTouchListener() {

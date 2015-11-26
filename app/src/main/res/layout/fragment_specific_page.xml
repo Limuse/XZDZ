@@ -20,7 +20,7 @@
             android:orientation="vertical">
 
             <com.custom.CircleImageView
-                android:id="@+id/iv_my"
+                android:id="@+id/iv_image"
                 android:layout_width="72dp"
                 android:layout_height="72dp"
                 android:layout_gravity="center"

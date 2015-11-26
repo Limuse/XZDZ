@@ -7,6 +7,8 @@ import android.annotation.SuppressLint;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.leo.base.util.LSharePreference;
+
 @SuppressLint("ParcelCreator")
 public class FileTraversal implements Parcelable {
 	public String filename;
@@ -20,6 +22,8 @@ public class FileTraversal implements Parcelable {
 	public void writeToParcel(Parcel dest, int flags) {
 		dest.writeString(filename);
 		dest.writeList(filecontent);
+
+
 	}
 	
 	public static final Creator<FileTraversal> CREATOR=new Creator<FileTraversal>() {

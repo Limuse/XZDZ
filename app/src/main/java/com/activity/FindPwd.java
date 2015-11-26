@@ -61,7 +61,7 @@ public class FindPwd extends LActivity {
         toolbar.setTitle(getResources().getText(R.string.app_findpwd));
         toolbar.setTitleTextColor(getResources().getColor(R.color.app_white));
         toolbar.setBackgroundColor(Color.parseColor("#00ffffff"));
-//        toolbar.setNavigationIcon(R.mipmap.back_white);
+        toolbar.setNavigationIcon(R.mipmap.back_white);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 finish();
@@ -86,7 +86,7 @@ public class FindPwd extends LActivity {
             time = 60;
             flag = true;
             getTime();
-            String url = getResources().getString(R.string.app_service_url) + "/huihao/register/captchas/1/sign/aggregation/";
+            String url = getResources().getString(R.string.app_service_url) + "/app/login/resetpwd/sign/aggregation/";
             ActivityHandler handler = new ActivityHandler(this);
             Map<String, String> map = new HashMap<String, String>();
             map.put("mobile", et_user.getText().toString().trim());

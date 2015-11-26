@@ -21,6 +21,23 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <!--登录-->
+        <activity
+            android:name="com.activity.LoginMain"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait" />
+
+        <!--注册-->
+        <activity
+            android:name="com.activity.Registered"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait" />
+
+        <!--忘记密码-->
+        <activity
+            android:name="com.activity.FindPwd"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait" />
         <!--联系客服-->
         <activity
             android:name="com.activity.ContactService"

@@ -1,12 +1,14 @@
 package com.activity;
 
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.InputType;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -15,8 +17,13 @@ import com.common.Bar;
 import com.common.Token;
 import com.handle.ActivityHandler;
 import com.leo.base.activity.LActivity;
+import com.leo.base.adapter.LAdapters;
+import com.leo.base.adapter.LBaseAdapter;
+import com.leo.base.application.LApplication;
+import com.leo.base.db.LDBHelper;
 import com.leo.base.entity.LMessage;
 import com.leo.base.net.LReqEntity;
+import com.leo.base.util.L;
 import com.leo.base.util.LSharePreference;
 import com.leo.base.util.T;
 import com.xzdz.R;
@@ -52,17 +59,17 @@ public class LoginMain extends LActivity {
         toolbar.setTitle(getResources().getText(R.string.app_login));
         toolbar.setTitleTextColor(getResources().getColor(R.color.app_white));
         toolbar.setBackgroundColor(Color.parseColor("#00ffffff"));
-//        toolbar.inflateMenu(R.menu.login);
-//        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
-//            public boolean onMenuItemClick(MenuItem item) {
-//                if (item.getItemId() == R.id.menu_login) {
-//                    Intent intent = new Intent(LoginMain.this, Registered.class);
-//                    startActivity(intent);
-//                }
-//                return false;
-//            }
-//        });
-//        toolbar.setNavigationIcon(R.mipmap.back_white);
+        toolbar.inflateMenu(R.menu.login);
+        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            public boolean onMenuItemClick(MenuItem item) {
+                if (item.getItemId() == R.id.menu_login) {
+                    Intent intent = new Intent(LoginMain.this, Registered.class);
+                    startActivity(intent);
+                }
+                return false;
+            }
+        });
+        toolbar.setNavigationIcon(R.mipmap.back_white);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 finish();
@@ -86,7 +93,7 @@ public class LoginMain extends LActivity {
         Map<String,String> map=new HashMap<String,String>();
         map.put("mobile",et_user.getText().toString().trim());
         map.put("password",et_pwd.getText().toString().trim());
-        String url=getResources().getString(R.string.app_service_url)+"/huihao/login/1/sign/aggregation/";
+        String url=getResources().getString(R.string.app_service_url)+"/app/login/login/sign/aggregation/";
         LReqEntity entity=new LReqEntity(url,map);
         ActivityHandler handler=new ActivityHandler(this);
         handler.startLoadingData(entity,1);
@@ -105,6 +112,7 @@ public class LoginMain extends LActivity {
         }
     }
     private void getSmJsonData(String str) {
+        L.e(str);
         try{
             JSONObject info=new JSONObject(str);
             int status=info.optInt("status");

@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/app_background"
+    android:background="@color/app_white"
     android:orientation="vertical">
 
     <RelativeLayout
@@ -17,24 +17,24 @@
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:layout_marginLeft="16dp"
-            android:background="@mipmap/ic_launcher"
+            android:background="@mipmap/menu"
             android:onClick="open" />
 
         <RelativeLayout
             android:id="@+id/rel_city"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_centerInParent="true"
-            android:onClick="city">
+            android:layout_centerInParent="true">
 
             <TextView
                 android:id="@+id/tv_city"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:text="杭州 v"
+                android:text="西装定制"
                 android:textColor="@color/app_white"
-                android:textSize="20sp" />
+                android:textSize="22sp"
+                android:textStyle="bold" />
         </RelativeLayout>
 
         <View
@@ -57,11 +57,11 @@
             <com.custom.ImageCycleView
                 android:id="@+id/ImageCycleView"
                 android:layout_width="match_parent"
-                android:layout_height="240dp"></com.custom.ImageCycleView>
+                android:layout_height="200dp"></com.custom.ImageCycleView>
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="88dp">
+                android:layout_height="64dp">
 
                 <View
                     android:id="@+id/center"
@@ -71,7 +71,7 @@
 
                 <RelativeLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="48dp"
+                    android:layout_height="40dp"
                     android:layout_centerVertical="true"
                     android:layout_marginRight="8dp"
                     android:layout_toLeftOf="@+id/center"
@@ -88,7 +88,7 @@
                         android:layout_centerVertical="true"
                         android:layout_marginLeft="24dp"
                         android:clickable="false"
-                        android:src="@mipmap/ic_launcher" />
+                        android:src="@mipmap/want" />
 
                     <Button
                         android:layout_width="wrap_content"
@@ -104,7 +104,7 @@
 
                 <RelativeLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="48dp"
+                    android:layout_height="40dp"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="8dp"
                     android:layout_toRightOf="@+id/center"
@@ -121,7 +121,7 @@
                         android:layout_centerVertical="true"
                         android:layout_marginLeft="24dp"
                         android:clickable="false"
-                        android:src="@mipmap/ic_launcher" />
+                        android:src="@mipmap/go" />
 
                     <Button
                         android:layout_width="wrap_content"
@@ -138,7 +138,8 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-8dp">
 
                 <TextView
                     android:id="@+id/tv1"
@@ -168,22 +169,38 @@
             </RelativeLayout>
 
 
-            <ListView
+            <com.custom.NoScrollListview
                 android:id="@+id/list_main"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@null"
-                android:scrollbars="none"></ListView>
+                android:divider="@null"
+                android:scrollbars="none"></com.custom.NoScrollListview>
 
-            <Button
-                android:text="更多 ►"
-                android:textSize="@dimen/app_text_normal"
-                android:textColor="@color/app_text_dark"
-                android:background="@drawable/btn_more"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:layout_margin="24dp"
-                />
+                android:background="@drawable/btn_more"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:textColor="@color/app_text_dark"
+                android:textSize="@dimen/app_text_normal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="查看更多"
+                    android:textColor="@color/app_text_dark"
+                    android:textSize="@dimen/app_text_normal" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:src="@mipmap/more_arrow" />
+            </LinearLayout>
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -225,14 +242,30 @@
             </RelativeLayout>
 
 
-            <Button
-                android:text="更多 ►"
-                android:textSize="@dimen/app_text_normal"
-                android:textColor="@color/app_text_dark"
-                android:background="@drawable/btn_more"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
-                android:layout_margin="24dp" />
+                android:layout_margin="24dp"
+                android:background="@drawable/btn_more"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:textColor="@color/app_text_dark"
+                android:textSize="@dimen/app_text_normal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="查看更多"
+                    android:textColor="@color/app_text_dark"
+                    android:textSize="@dimen/app_text_normal" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:src="@mipmap/more_arrow" />
+            </LinearLayout>
 
         </LinearLayout>
 
