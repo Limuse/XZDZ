@@ -19,7 +19,7 @@
         app:pstsIndicatorHeight="2dp"
         app:pstsShouldExpand="true"
         app:pstsUnderlineHeight="0dp"
-        app:selectedTabTextColor="@color/background_tab_pressed" />
+        app:selectedTabTextColor="@color/app_toolbar" />
 
     <android.support.v4.view.ViewPager
         android:id="@+id/view_pager"

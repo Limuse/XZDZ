@@ -77,11 +77,10 @@ public class InfEmail extends LActivity {
         } else {
             Map<String, String> map = new HashMap<>();
             map.put("email", email);// 邮箱
-            L.e(email);
-            //map.put("uuid", Token.get(this));
+            map.put("uuid", Token.get(this));
             Resources res = getResources();
             String url = res.getString(R.string.app_service_url)
-                    + "/app/member/editemail/sign/aggregation/" + Token.get(this);
+                    + "/app/member/editemail/sign/aggregation/";
             LReqEntity entity = new LReqEntity(url, map);
             ActivityHandler handler = new ActivityHandler(this);
             handler.startLoadingData(entity, 1);

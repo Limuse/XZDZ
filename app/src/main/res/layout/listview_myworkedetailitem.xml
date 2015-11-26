@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="64dp"
+    android:background="@color/app_white">
+
+    <com.custom.CircleImageView
+        android:id="@+id/detail_img"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="@dimen/app_setting_right"
+        android:src="@mipmap/title_img"
+        app:border_color="@android:color/transparent"
+        app:border_width="0.5dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="8dp"
+        android:layout_toRightOf="@id/detail_img"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_dd1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginBottom="4dp"
+            android:textColor="@color/app_text_dark"
+            android:textSize="@dimen/app_text_big" />
+
+        <TextView
+            android:id="@+id/tv_dd2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="4dp"
+            android:textColor="@color/app_text_light"
+            android:textSize="@dimen/app_text_normal" />
+    </LinearLayout>
+</RelativeLayout>

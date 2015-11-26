@@ -193,6 +193,11 @@
             android:name="com.activity.ProviceInfoPlace"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait" />
+        <!--我的作品详情-->
+        <activity
+            android:name="com.activity.MyWorkDetail"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait" />
     </application>
 
     <!-- alipay sdk begin -->

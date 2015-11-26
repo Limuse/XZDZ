@@ -106,9 +106,9 @@ public class UpdatePwd extends LActivity implements View.OnClickListener {
             }
             else {
                 Resources res = getResources();
-                String url = res.getString(R.string.app_service_url) + "/app/member/editpassword/sign/aggregation/"+Token.get(this);
+                String url = res.getString(R.string.app_service_url) + "/app/member/editpassword/sign/aggregation/";
                 Map<String, String> map = new HashMap<>();
-               // map.put("uuid", Token.get(this));
+                map.put("uuid", Token.get(this));
                 map.put("opwd", oldpasswd);//oldpasswd 旧密码
                 map.put("pwd", passwd);// passwd 新密码
                 LReqEntity entity = new LReqEntity(url, map);

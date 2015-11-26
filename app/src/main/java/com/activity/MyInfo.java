@@ -24,6 +24,7 @@ import android.widget.RelativeLayout;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
+import com.MyApplication;
 import com.common.HavaSdCard;
 import com.common.Token;
 import com.custom.MaterialDialog;
@@ -36,6 +37,7 @@ import com.leo.base.util.L;
 import com.leo.base.util.T;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.display.FadeInBitmapDisplayer;
 import com.xzdz.R;
 
 import org.json.JSONArray;
@@ -129,17 +131,37 @@ public class MyInfo extends LActivity implements View.OnClickListener {
         rl5.setOnClickListener(this);
         rl6.setOnClickListener(this);
         rl7.setOnClickListener(this);
+       // imgs();
+
+    }
+    private void imgs(){
+        /**
+         * 图片需要处理
+         */
+        ImageLoader imageLoader = null;
+
+        // 图片
+        if (imageLoader == null) {
+            imageLoader = MyApplication.getInstance().getImageLoader();
+        }
+        DisplayImageOptions options = new DisplayImageOptions.Builder()
+                .showImageForEmptyUri(R.mipmap.fc)
+                .showImageOnFail(R.mipmap.fc)
+                .cacheInMemory(true).cacheOnDisk(true)
+                .considerExifParams(true)
+                .build();
+        imageLoader.displayImage(img, my_imgs, options);
     }
 
     private void initData() {
         ///app/member/userinfo/sign/aggregation/uuid
         Map<String, String> map = new HashMap<String, String>();
         //L.e(img);
-        //map.put("uuid", Token.get(this));
+        map.put("uuid", Token.get(this));
         Resources res = getResources();
         String url = res.getString(R.string.app_service_url)
-                + "app/member/userinfo/sign/aggregation/" + Token.get(this);
-        LReqEntity entity = new LReqEntity(url);
+                + "/app/member/userinfo/sign/aggregation/";
+        LReqEntity entity = new LReqEntity(url,map);
         ActivityHandler handler = new ActivityHandler(this);
         handler.startLoadingData(entity, 4);
 
@@ -421,10 +443,10 @@ public class MyInfo extends LActivity implements View.OnClickListener {
         Map<String, String> map = new HashMap<String, String>();
         map.put("pictures", img);// 头像
         //L.e(img);
-        //map.put("uuid", Token.get(this));
+        map.put("uuid", Token.get(this));
         Resources res = getResources();
         String url = res.getString(R.string.app_service_url)
-                + "/app/member/editavatar/sign/aggregation/" + Token.get(this);
+                + "/app/member/editavatar/sign/aggregation/";
         LReqEntity entity = new LReqEntity(url, map);
         ActivityHandler handler = new ActivityHandler(this);
         handler.startLoadingData(entity, 1);
@@ -456,11 +478,11 @@ public class MyInfo extends LActivity implements View.OnClickListener {
     private void sex() {
         if (!sexid.equals(null)) {
             Map<String, String> map = new HashMap<>();
-            //map.put("uuid", Token.get(this));
+            //map.put("uuid", Token.get(/this));
             map.put("sex", sexid.trim());// 性别
             Resources res = getResources();
             String url = res.getString(R.string.app_service_url)
-                    + "/app/member/editsex/sign/aggregation/" + Token.get(this);
+                    + "/app/member/editsex/sign/aggregation/";
             LReqEntity entity = new LReqEntity(url, map);
             ActivityHandler handler = new ActivityHandler(this);
             handler.startLoadingData(entity, 2);
@@ -491,11 +513,11 @@ public class MyInfo extends LActivity implements View.OnClickListener {
     private void Btime() {
 
         Map<String, String> map = new HashMap<>();
-        //map.put("uuid", Token.get(this));
+        map.put("uuid", Token.get(this));
         map.put("birthday", tv_brithday.getText().toString());// 生日
         Resources res = getResources();
         String url = res.getString(R.string.app_service_url)
-                + "/app/member/editbirthday/sign/aggregation/" + Token.get(this);
+                + "/app/member/editbirthday/sign/aggregation/";
         LReqEntity entity = new LReqEntity(url, map);
         ActivityHandler handler = new ActivityHandler(this);
         handler.startLoadingData(entity, 3);
@@ -554,6 +576,7 @@ public class MyInfo extends LActivity implements View.OnClickListener {
 //                email: 123456@qq.com
 //                mobile: 13543456789
 //                birthday: 2010
+//                head_portrait: Uploads/appavatar1448242206.jpg
                 if (jsonO.length() > 0) {
 
                     String id = jsonO.getString("id");
@@ -590,8 +613,10 @@ public class MyInfo extends LActivity implements View.OnClickListener {
                     tv_phone.setText(phones);
                     String birthday = jsonO.getString("birthday");
                     tv_brithday.setText(birthday);
+                    String vimg=jsonO.getString("head_portrait");
+                    img=vimg;
                 }
-
+                imgs();
 
             } else {
                 T.ss(jsonObject.getString("info"));

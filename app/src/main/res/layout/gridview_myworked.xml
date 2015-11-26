@@ -2,10 +2,11 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/app_background"
+    android:background="@color/app_white"
     android:orientation="vertical">
 
     <RelativeLayout
+        android:id="@+id/rlll"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -23,12 +24,11 @@
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_alignRight="@+id/gv_img"
-            android:background="@drawable/btn_press">
+            >
 
             <ImageView
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:background="@drawable/btn_press"
                 android:padding="1dp"
                 android:src="@mipmap/del" />
         </RelativeLayout>

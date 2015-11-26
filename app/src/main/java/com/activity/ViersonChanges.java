@@ -13,12 +13,16 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import com.common.Bar;
+import com.entity.MyCusdtomEntity;
 import com.fragment.Vc_Dress;
 import com.fragment.Vc_Releaxe;
 import com.fragment.Vc_Suit;
 import com.leo.base.activity.LActivity;
 import com.leo.base.util.T;
 import com.xzdz.R;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -30,7 +34,10 @@ import cn.jpush.android.api.JPushInterface;
  */
 public class ViersonChanges extends LActivity {
     public static ViersonChanges context;
-
+    private String Type = "1";
+    private List<MyCusdtomEntity.ListEntity> list = new ArrayList<>();
+    private List<MyCusdtomEntity.ListEntity.ChildEntity> childlist = new ArrayList<>();
+    private List<MyCusdtomEntity.ListEntity.ChildEntity.childV> chilvv=new ArrayList<>();
     @InjectView(R.id.relax)
     Button relax;
     @InjectView(R.id.suit)
@@ -70,7 +77,7 @@ public class ViersonChanges extends LActivity {
         context = this;
         ButterKnife.inject(this);
         initBar();
-        initView();
+        initData();
     }
 
     private void initBar() {
@@ -87,6 +94,17 @@ public class ViersonChanges extends LActivity {
         });
     }
 
+    private void initData() {
+        MyCusdtomEntity.ListEntity lentity = (MyCusdtomEntity.ListEntity) getIntent().getSerializableExtra("entity");
+            lentity.getId();
+        lentity.getPid();
+        lentity.getTitle();
+        for(int i=0;i<lentity.get_child().size();i++){
+            chilvv=lentity.get_child().get(i).get_child();
+        }
+
+        initView();
+    }
 
     public void setBg() {
         relax.setBackgroundColor(getResources().getColor(R.color.app_toolbar));
@@ -106,7 +124,6 @@ public class ViersonChanges extends LActivity {
         relax.setTextColor(getResources().getColor(R.color.app_toolbar));
         switchFragemnt(vc_releaxe, RELAX);
     }
-
 
 
     public void switchFragemnt(Fragment fragment, String tag) {

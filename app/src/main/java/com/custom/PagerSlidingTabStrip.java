@@ -90,6 +90,8 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
 
     private int tabBackgroundResId = R.drawable.background_tab;
 
+    private int tabBackgroudChecdId;
+
     private Locale locale;
 
     public PagerSlidingTabStrip(Context context) {
@@ -106,6 +108,8 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
 
         setFillViewport(true);
         setWillNotDraw(false);
+
+        tabBackgroudChecdId=tabBackgroundResId;
 
         tabsContainer = new LinearLayout(context);
         tabsContainer.setOrientation(LinearLayout.HORIZONTAL);
@@ -202,6 +206,10 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
         if (locale == null) {
             locale = getResources().getConfiguration().locale;
         }
+    }
+
+    public void setTabChecdBackgroud(int id){
+        tabBackgroudChecdId=id;
     }
 
     public void setViewPager(ViewPager pager) {
@@ -328,6 +336,7 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
                 }
                 if (i == selectedPosition) {
                     tab.setTextColor(selectedTabTextColor);
+                    v.setBackgroundResource(tabBackgroudChecdId);
                 }
             }
         }

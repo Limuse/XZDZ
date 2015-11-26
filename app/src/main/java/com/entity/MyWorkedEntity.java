@@ -7,7 +7,16 @@ public class MyWorkedEntity {
     private String img;
     private String title;
     private String time;
-    private int id;
+    private String id;
+    private String type;
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
 
     public String getImg() {
         return img;
@@ -17,11 +26,11 @@ public class MyWorkedEntity {
         this.img = img;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

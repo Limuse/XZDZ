@@ -70,6 +70,9 @@ public class Vc_Releaxe extends LFragment implements ViewPager.OnPageChangeListe
         initPage();
     }
 
+    private void initData(){
+
+    }
 
     private void initPage() {
 //        map.put(1,getResources().getDrawable(R.mipmap.fc));

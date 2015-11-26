@@ -3,21 +3,29 @@ package com.fragment;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import com.MyApplication;
+import com.activity.MyCustome;
 import com.activity.ViersonChanges;
 import com.common.Token;
+import com.entity.MyCusdtomEntity;
 import com.handle.ActivityHandler;
 import com.handle.FragmentHandler;
 import com.leo.base.activity.fragment.LFragment;
 import com.leo.base.entity.LMessage;
 import com.leo.base.net.LReqEntity;
+import com.leo.base.util.L;
 import com.leo.base.util.LSharePreference;
 import com.leo.base.util.T;
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.display.FadeInBitmapDisplayer;
 import com.xzdz.R;
 
 import org.json.JSONArray;
@@ -26,6 +34,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -35,6 +44,8 @@ import java.util.Map;
 public class MyC_Pants extends LFragment {
     private ImageView img;
     private Button btn_next;
+    private List<MyCusdtomEntity.ListEntity> list = new ArrayList<>();
+    private MyCusdtomEntity.ListEntity entity = new MyCusdtomEntity.ListEntity();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -51,7 +62,6 @@ public class MyC_Pants extends LFragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         initView();
-        initData();
     }
 
     private void initView() {
@@ -61,10 +71,16 @@ public class MyC_Pants extends LFragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), ViersonChanges.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("ids", entity.getId());
+                bundle.putSerializable("entity", entity);
+                intent.putExtras(bundle);
                 startActivity(intent);
             }
         });
+        initData();
     }
+
 
     public static MyC_Pants newInstance() {
         MyC_Pants fragment = new MyC_Pants();
@@ -73,45 +89,46 @@ public class MyC_Pants extends LFragment {
         return fragment;
     }
 
+    private void imgs() {
+        /**
+         * 图片需要处理
+         */
+        ImageLoader imageLoader = null;
+
+        // 图片
+        if (imageLoader == null) {
+            imageLoader = MyApplication.getInstance().getImageLoader();
+        }
+
+        DisplayImageOptions options = new DisplayImageOptions.Builder()
+                .showImageOnLoading(R.mipmap.pants)
+                .showImageForEmptyUri(R.mipmap.pants)
+                .showImageOnFail(R.mipmap.pants)
+                .cacheInMemory(true).cacheOnDisk(true)
+                .considerExifParams(true)
+                .displayer(new FadeInBitmapDisplayer(200))
+                .build();
+        imageLoader.displayImage(entity.getFace_pic(), img, options);
+    }
 
     private void initData() {
-        Resources res = getResources();
-        String url = res.getString(R.string.app_service_url)
-                + "/app/product/suit/sign/aggregation/";
-        final Map<String, String> map = new HashMap<>();
-        map.put("uuid", Token.get(getActivity()));
-        map.put("id", "2");
-        LReqEntity entity = new LReqEntity(url, map);
-        // L.e(entity + "");
-        FragmentHandler handler = new FragmentHandler(MyC_Pants.this);
-        handler.startLoadingData(entity, 1);
-    }
-
-    // 返回获取的网络数据
-    public void onResultHandler(LMessage msg, int requestId) {
-        super.onResultHandler(msg, requestId);
-        if (msg != null) {
-            if (requestId == 1) {
-                getJsonSubmit(msg.getStr());
-            } else {
-                T.ss("获取数据失败");
+        list = MyCustome.myCustome.SendList();
+        for (int i = 0; i < list.size(); i++) {
+            MyCusdtomEntity.ListEntity listEntity = new MyCusdtomEntity.ListEntity();
+            listEntity.setId(list.get(i).getId());
+            listEntity.setTitle(list.get(i).getTitle());
+            listEntity.setPid(list.get(i).getPid());
+            listEntity.setFace_pic(list.get(i).getFace_pic());
+            listEntity.set_child(list.get(i).get_child());
+            if (list.get(i).getId().equals("2")) {
+                entity = listEntity;
             }
         }
+//        L.e(entity.getFace_pic() + "ddddddddddd");
+//        L.e(list.size() + "ddddddddddd");
+//        L.e(entity.toString()+"dddddddddddddd");
+        imgs();
     }
 
-    private void getJsonSubmit(String data) {
-        //list.clear();
-        try {
-            JSONObject jsonObject = new JSONObject(data);
-            int code = jsonObject.getInt("status");
-            if (code == 1) {
-                JSONObject o = jsonObject.getJSONObject("list");
 
-
-            }
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-    }
 }

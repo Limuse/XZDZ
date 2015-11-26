@@ -10,12 +10,15 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 
+import com.adapter.MyRedMAdapter;
 import com.common.Token;
 import com.custom.IlistView;
+import com.entity.MyRedbEntity;
 import com.handle.ActivityHandler;
 import com.leo.base.activity.LActivity;
 import com.leo.base.entity.LMessage;
 import com.leo.base.net.LReqEntity;
+import com.leo.base.util.L;
 import com.leo.base.util.LSharePreference;
 import com.leo.base.util.T;
 import com.xzdz.R;
@@ -24,7 +27,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -36,6 +41,8 @@ public class MyReam extends LActivity implements View.OnClickListener {
     private EditText et_text;
     private Button btn_change;
     private IlistView listview;
+    private List<MyRedbEntity> list = new ArrayList<>();
+    private MyRedMAdapter adapter;
 
     @Override
     protected void onLCreate(Bundle bundle) {
@@ -81,10 +88,10 @@ public class MyReam extends LActivity implements View.OnClickListener {
         Resources res = getResources();
         final Map<String, String> map = new HashMap<>();
         String url = res.getString(R.string.app_service_url)
-                + "/app/order/coupon/sign/aggregation/"+Token.get(this);
-        //map.put("uuid", Token.get(this));
-        LReqEntity entity = new LReqEntity(url);
-        //http://huihaowfx.huisou.com//huihao/myaddress/1/sign/aggregation/?uuid=6a35c1ed7255077d57d57be679048034
+                + "/app/order/coupon/sign/aggregation/";
+                //?"+"uuid="+Token.get(this);
+        map.put("uuid", Token.get(this));
+        LReqEntity entity = new LReqEntity(url,map);
         // Fragment用FragmentHandler/Activity用ActivityHandler
         ActivityHandler handler = new ActivityHandler(this);
         handler.startLoadingData(entity, 1);
@@ -92,37 +99,36 @@ public class MyReam extends LActivity implements View.OnClickListener {
 
 
     private void getJsonData(String data) {
-     ///   list.clear();
+        list.clear();
         try {
             JSONObject jsonObject = new JSONObject(data);
             int code = jsonObject.getInt("status");
             if (code == 1) {
-                //JSONObject result = jsonObject.getJSONObject("list");
                 JSONArray array = jsonObject.getJSONArray("list");
+//                if(array.length()<1){
+//
+//                }else
                 for (int i = 0; i < array.length(); i++) {
                     JSONObject object = array.getJSONObject(i);
-                  //  AddressItemEntity itementity = new AddressItemEntity();
-//                    itementity.setId(object.getString("id"));
-//                    itementity.setUname(object.getString("uname"));
-//                    itementity.setUphone(object.getString("uphone"));
-//                    itementity.setProvince(object.getString("province"));
-//                    itementity.setCity(object.getString("city"));
-//                    itementity.setCountry(object.getString("country"));
-//                    itementity.setAddress(object.getString("address"));
-//                    list.add(itementity);
+                    MyRedbEntity itementity = new MyRedbEntity();
+                    itementity.setId(object.getString("id"));
+                    itementity.setCoupon_id(object.getString("coupon_id"));
+                    String tme = object.getString("end_time").substring(0, 10);
+                    itementity.setEnd_time("有效期至" + tme);
+                    String money = object.getString("money").substring(0, object.getString("money").indexOf("."));
+                    itementity.setMoney(money);
+                    list.add(itementity);
                 }
-//                adapter = new ChooseAddressAdapter(Choose_Address.this, list,listView);
-//                listView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
-//                listView.setAdapter(adapter);
-
+                adapter = new MyRedMAdapter(MyReam.this, list);
+                listview.setAdapter(adapter);
             } else {
-                T.ss(jsonObject.getString("info").toString());
-                String longs=jsonObject.getString("info");
-                if(longs.equals("请先登录")){
-                    LSharePreference.getInstance(this).setBoolean("login", false);
-                    Intent intent = new Intent(this, LoginMain.class);
-                    startActivity(intent);
-                }
+                //  T.ss(jsonObject.getString("info").toString());
+                //String longs = jsonObject.getString("info");
+//                if (longs.equals("请先登录")) {
+//                    LSharePreference.getInstance(this).setBoolean("login", false);
+//                    Intent intent = new Intent(this, LoginMain.class);
+//                    startActivity(intent);
+//                }
             }
         } catch (JSONException e) {
             e.printStackTrace();

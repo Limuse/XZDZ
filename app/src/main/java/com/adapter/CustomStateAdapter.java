@@ -8,6 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.entity.MetailflowEntity;
 import com.xzdz.R;
 
 import java.util.List;
@@ -17,24 +18,22 @@ import java.util.List;
  */
 public class CustomStateAdapter extends BaseAdapter {
     private Context context;
-    // private List<MetailflowEntity.ExressDetailEntity> list = null;
+    private List<MetailflowEntity.DataEntity> list;
 
-    public CustomStateAdapter(Context context) {
+    public CustomStateAdapter(Context context,List<MetailflowEntity.DataEntity> list) {
         this.context = context;
-        //this.list = list;
+        this.list = list;
     }
 
 
     @Override
     public int getCount() {
-        // return list.size();
-        return 0;
+         return list.size();
     }
 
     @Override
     public Object getItem(int position) {
-        // return list.get(position);
-        return 0;
+         return list.get(position);
     }
 
     @Override
@@ -66,15 +65,15 @@ public class CustomStateAdapter extends BaseAdapter {
             viewHolder.view1.setVisibility(View.GONE);
             viewHolder.view2.setVisibility(View.GONE);
             viewHolder.view3.setVisibility(View.VISIBLE);
-            viewHolder.iv_img.setBackground(context.getResources().getDrawable(R.mipmap.yud));
+            viewHolder.iv_img.setBackground(context.getResources().getDrawable(R.mipmap.yus));
             viewHolder.tv1.setTextColor(context.getResources().getColor(R.color.app_green));
             viewHolder.tv2.setTextColor(context.getResources().getColor(R.color.app_green));
 
         }
 
-//        MetailflowEntity.ExressDetailEntity entity = list.get(position);
-//        viewHolder.tv1.setText(entity.getContext());
-//        viewHolder.tv2.setText(entity.getFtime());
+       MetailflowEntity.DataEntity entity = list.get(position);
+        viewHolder.tv1.setText(entity.getContext());
+        viewHolder.tv2.setText(entity.getFtime());
 
         return convertView;
     }
