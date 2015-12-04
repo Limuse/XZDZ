@@ -22,7 +22,7 @@ public class SureOrder extends LActivity implements View.OnClickListener {
     @Override
     protected void onLCreate(Bundle bundle) {
         setContentView(R.layout.activity_sureorder);
-        AboutActivitySy.getInstance().addActivity(this);
+       // AboutActivitySy.getInstance().addActivity(this);
         initBar();
         initView();
     }

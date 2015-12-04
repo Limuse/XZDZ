@@ -236,45 +236,45 @@ public class OrderDetails extends LActivity implements View.OnClickListener {
             // T.ss("支付定金");
             String price = tv_yfprice.getText().toString();
             String title = tv_title.getText().toString();
-//            /**
-//             * 服务端返回支付宝的数据，然后支付成功后跳转-----支付成功界面
-//             */
-//            String orderInfo = getOrderInfo(title, order_id, price);
-//            // 对订单做RSA 签名
-//            String sign = sign(orderInfo);
-//            try {
-//                // 仅需对sign 做URL编码
-//                sign = URLEncoder.encode(sign, "UTF-8");
-//            } catch (UnsupportedEncodingException e) {
-//                e.printStackTrace();
-//            }
-//
-//            // 完整的符合支付宝参数规范的订单信息
-//            final String payInfo = orderInfo + "&sign=\"" + sign + "\"&"
-//                    + getSignType();
-//
-//            Runnable payRunnable = new Runnable() {
-//
-//                @Override
-//                public void run() {
-//                    // 构造PayTask 对象
-//                    PayTask alipay = new PayTask(OrderDetails.this);
-//                    // 调用支付接口，获取支付结果
-//                    String result = alipay.pay(payInfo);
-//
-//                    Message msg = new Message();
-//                    msg.what = SDK_PAY_FLAG;
-//                    msg.obj = result;
-//                    mHandler.sendMessage(msg);
-//                }
-//            };
-//
-//            // 必须异步调用
-//            Thread payThread = new Thread(payRunnable);
-//            payThread.start();
-            Intent intent = new Intent(OrderDetails.this, SureOrder.class);
-            intent.putExtra("order_id", order_id);
-            startActivity(intent);
+            /**
+             * 服务端返回支付宝的数据，然后支付成功后跳转-----支付成功界面
+             */
+            String orderInfo = getOrderInfo(title, order_id, price);
+            // 对订单做RSA 签名
+            String sign = sign(orderInfo);
+            try {
+                // 仅需对sign 做URL编码
+                sign = URLEncoder.encode(sign, "UTF-8");
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
+
+            // 完整的符合支付宝参数规范的订单信息
+            final String payInfo = orderInfo + "&sign=\"" + sign + "\"&"
+                    + getSignType();
+
+            Runnable payRunnable = new Runnable() {
+
+                @Override
+                public void run() {
+                    // 构造PayTask 对象
+                    PayTask alipay = new PayTask(OrderDetails.this);
+                    // 调用支付接口，获取支付结果
+                    String result = alipay.pay(payInfo);
+
+                    Message msg = new Message();
+                    msg.what = SDK_PAY_FLAG;
+                    msg.obj = result;
+                    mHandler.sendMessage(msg);
+                }
+            };
+
+            // 必须异步调用
+            Thread payThread = new Thread(payRunnable);
+            payThread.start();
+//            Intent intent = new Intent(OrderDetails.this, SureOrder.class);
+//            intent.putExtra("order_id", order_id);
+//            startActivity(intent);
         }
     }
 
