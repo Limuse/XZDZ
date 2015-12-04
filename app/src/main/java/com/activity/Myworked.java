@@ -98,9 +98,8 @@ public class Myworked extends LActivity {
     private void initData() {
         //   app/product/mywork/sign/aggregation/
         Resources res = getResources();
-        // final Map<String, String> map = new HashMap<>();
         String url = res.getString(R.string.app_service_url)
-                + "app/product/mywork/sign/aggregation/?" + "uuid=" +Token.get(this);
+                + "app/product/mywork/sign/aggregation/?" + "uuid=" + Token.get(this);
         LReqEntity entity = new LReqEntity(url);
         // Fragment用FragmentHandler/Activity用ActivityHandler
         ActivityHandler handler = new ActivityHandler(this);
@@ -124,7 +123,7 @@ public class Myworked extends LActivity {
                     myentity.setType(object.getString("product_step"));
                     mlist.add(myentity);
                 }
-                adapter = new MyWorkedGridvAdapter(this, mlist);
+                adapter = new MyWorkedGridvAdapter(this, mlist, Myworked.this);
                 gridView.setAdapter(adapter);
             } else {
                 //  T.ss(jsonObject.getString("info").toString());

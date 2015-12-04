@@ -69,6 +69,7 @@
                 android:orientation="horizontal"
                 android:layout_marginRight="@dimen/app_myself_left_mar"
                 android:layout_marginLeft="@dimen/app_myself_left_mar"
+                android:layout_marginBottom="20dp"
                 android:background="@drawable/btn_press">
                 <TextView
                     android:id="@+id/tv_tb"

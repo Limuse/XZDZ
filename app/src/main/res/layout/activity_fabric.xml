@@ -22,10 +22,11 @@
             android:layout_height="54dp"
             android:layout_alignParentRight="true"
             android:background="@drawable/btn_save"
-            android:onClick="save"
+            android:onClick="savez"
             android:text="保存"
             android:textColor="@color/app_white"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            android:visibility="gone" />
     </RelativeLayout>
 
     <RelativeLayout
@@ -36,8 +37,7 @@
             android:id="@+id/img1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="220dp"
-            android:src="@mipmap/fc" />
+            android:layout_marginBottom="220dp" />
 
         <LinearLayout
             android:id="@+id/lly"

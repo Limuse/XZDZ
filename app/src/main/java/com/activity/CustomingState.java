@@ -18,6 +18,7 @@ import android.widget.Toast;
 import com.MyApplication;
 import com.adapter.CustomStateAdapter;
 import com.adapter.CustomingAdapter;
+import com.common.AboutActivitySy;
 import com.common.Token;
 import com.custom.CustomDialog;
 import com.entity.CustomingEntity;
@@ -58,10 +59,13 @@ public class CustomingState extends LActivity implements View.OnClickListener {
     private String staeOr;
     private CustomStateAdapter adapter;
     private List<MetailflowEntity.DataEntity> listMf = new ArrayList<>();
+    private String order_id;
+    private int REPAIR_STAUS;//
 
     @Override
     protected void onLCreate(Bundle bundle) {
         setContentView(R.layout.activity_customingstate);
+        AboutActivitySy.getInstance().addActivity(this);
         initBar();
         initView();
     }
@@ -85,8 +89,8 @@ public class CustomingState extends LActivity implements View.OnClickListener {
 //        intent.putExtra("id", cu.getId());
 //        intent.putExtra("order_id", cu.getNum());
         String states = getIntent().getStringExtra("state");
-        String id = getIntent().getStringExtra("id");
-        String order_id = getIntent().getStringExtra("order_id");
+        // String id = getIntent().getStringExtra("id");
+        order_id = getIntent().getStringExtra("order_id");
         rl_s1 = (LinearLayout) findViewById(R.id.lly_s1);
         rl_s2 = (LinearLayout) findViewById(R.id.lly_s2);
         rl_s3 = (LinearLayout) findViewById(R.id.lly_s3);
@@ -98,6 +102,7 @@ public class CustomingState extends LActivity implements View.OnClickListener {
         if (states.equals("已完成")) {
             rl_s5.setVisibility(View.VISIBLE);
             staeOr = "5";
+            REPAIR_STAUS = 0;
         }
         if (states.equals("已发货")) {
             rl_s4.setVisibility(View.VISIBLE);
@@ -105,7 +110,7 @@ public class CustomingState extends LActivity implements View.OnClickListener {
         }
         if (states.equals("制衣中")) {
             rl_s3.setVisibility(View.VISIBLE);
-            staeOr = "3";
+            staeOr = "3";//和准备量体有time的区别
         }
         if (states.equals("量体完成")) {
             rl_s2.setVisibility(View.VISIBLE);
@@ -113,7 +118,7 @@ public class CustomingState extends LActivity implements View.OnClickListener {
         }
         if (states.equals("准备量体")) {
             rl_s1.setVisibility(View.VISIBLE);
-            staeOr = "1";
+            staeOr = "1";//有time字段
         }
         tv1_name = (TextView) findViewById(R.id.sc_name1);
         tv1_phone = (TextView) findViewById(R.id.sc_phone1);
@@ -145,11 +150,8 @@ public class CustomingState extends LActivity implements View.OnClickListener {
 
     private void initData(String oid) {
         Resources res = getResources();
-//        final Map<String, String> map = new HashMap<>();
         String url = res.getString(R.string.app_service_url)
-                + "/app/order/orderdetail/sign/aggregation/?" + "uuid=" + Token.get(this)  + "&order_id=" + oid;
-//        map.put("uuid", Token.get(this));
-//        map.put("order_id", oid);
+                + "/app/order/orderdetail/sign/aggregation/?" + "uuid=" + Token.get(this) + "&order_id=" + oid;
         LReqEntity entity = new LReqEntity(url);
         // Fragment用FragmentHandler/Activity用ActivityHandler
         ActivityHandler handler = new ActivityHandler(this);
@@ -158,7 +160,7 @@ public class CustomingState extends LActivity implements View.OnClickListener {
     }
 
     private void getJsonData(String data) {
-         listMf.clear();
+        listMf.clear();
         try {
             JSONObject jsonObject = new JSONObject(data);
             int code = jsonObject.getInt("status");
@@ -169,7 +171,6 @@ public class CustomingState extends LActivity implements View.OnClickListener {
 //
 //                }else
                     JSONObject jo = js.getJSONObject("delivery");
-                    L.e("ddddddd");
                     MetailflowEntity mens = new MetailflowEntity();
                     mens.setImg(jo.getString("img"));
                     mens.setState(jo.getString("state"));
@@ -191,6 +192,48 @@ public class CustomingState extends LActivity implements View.OnClickListener {
                     }
                     adapter = new CustomStateAdapter(this, listMf);
                     listview4.setAdapter(adapter);
+                }
+                //1是准备量体有time字段，3是制衣中没有time字段
+                if (staeOr.equals("3") || staeOr.equals("1")) {
+                    JSONObject js = jsonObject.getJSONObject("list");
+                    String name = js.getString("uname");
+                    String phone = js.getString("uphone");
+                    String addr = js.getString("address");
+                    String cut_status = js.getString("cut_status");
+                    if (js.has("time")) {
+                        String time = js.getString("time");
+                        tv1_name.setText(name);
+                        tv1_phone.setText(phone);
+                        tv1_addr.setText(addr);
+                        tv1_time.setText(time);
+                    } else {
+                        tv3_name.setText(name);
+                        tv3_phone.setText(phone);
+                        tv3_addr.setText(addr);
+                    }
+
+                }
+                if (staeOr.equals("5")) {
+                    JSONObject js = jsonObject.getJSONObject("list");
+                    String repair_status = js.getString("repair_status");
+                    //审核中-2，审核未通过-3，审核通过-4，修缮中-5，修缮完成-6
+
+                    if (repair_status.equals("审核中")) {
+                        REPAIR_STAUS = 2;
+                    }
+                    if (repair_status.equals("审核未通过")) {
+                        REPAIR_STAUS = 3;
+                    }
+                    if (repair_status.equals("审核通过")) {
+                        REPAIR_STAUS = 4;
+                    }
+                    if (repair_status.equals("修缮中")) {
+                        REPAIR_STAUS = 5;
+                    }
+                    if (repair_status.equals("修缮完成")) {
+                        REPAIR_STAUS = 6;
+                    }
+                    String cut_status = js.getString("cut_status");
                 }
 
 
@@ -272,8 +315,48 @@ public class CustomingState extends LActivity implements View.OnClickListener {
         }
         if (id == R.id.shouh) {
             //售后
-            Intent intent = new Intent(this, AfterSale.class);
-            startActivity(intent);
+            if (REPAIR_STAUS == 0) {
+                //没有提交过的状态
+                Intent intent = new Intent(this, AfterSale.class);
+                intent.putExtra("order_id", order_id);
+                intent.putExtra("repstate", "0");
+                startActivity(intent);
+            }
+            if (REPAIR_STAUS == 2) {
+                //已经提交过--审核中
+                Intent intent = new Intent(this, SubmitCheck.class);
+                intent.putExtra("statenum", "2");
+                intent.putExtra("order_id", order_id);
+                startActivity(intent);
+            }
+            if (REPAIR_STAUS == 3) {
+                //已经提交过--审核未通过
+                Intent intent = new Intent(this, SubmitCheck.class);
+                intent.putExtra("statenum", "3");
+                intent.putExtra("order_id", order_id);
+                startActivity(intent);
+            }
+            if (REPAIR_STAUS == 4) {
+                //已经提交过--审核通过
+                Intent intent = new Intent(this, SubmitCheck.class);
+                intent.putExtra("statenum", "4");
+                intent.putExtra("order_id", order_id);
+                startActivity(intent);
+            }
+            if (REPAIR_STAUS == 5) {
+                //已经提交过--修缮中
+                Intent intent = new Intent(this, SubmitCheck.class);
+                intent.putExtra("statenum", "5");
+                intent.putExtra("order_id", order_id);
+                startActivity(intent);
+            }
+            if (REPAIR_STAUS == 6) {
+                //已经提交过--修缮完成
+                Intent intent = new Intent(this, SubmitCheck.class);
+                intent.putExtra("statenum", "6");
+                intent.putExtra("order_id", order_id);
+                startActivity(intent);
+            }
         }
 
     }

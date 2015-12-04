@@ -10,7 +10,7 @@
     <android.support.v4.view.ViewPager
         android:id="@+id/viewimgs"
         android:layout_width="match_parent"
-        android:layout_height="240dp"
+        android:layout_height="match_parent"
         android:layout_below="@+id/top"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="16dp"
@@ -19,18 +19,6 @@
         android:layout_marginTop="24dp"
         android:clipChildren="false"
         android:overScrollMode="never" />
-
-    <TextView
-        android:id="@+id/tv_texts"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/viewimgs"
-        android:layout_centerHorizontal="true"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="16dp"
-        android:text="单排一粒扣"
-        android:textColor="@color/app_text_dark"
-        android:textSize="@dimen/app_text_big" />
 
 
     <Button

@@ -142,6 +142,17 @@
                 android:textColor="@color/app_text_dark"
                 android:textSize="@dimen/app_myself_tex" />
 
+            <TextView
+                android:id="@+id/tv_cle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/app_setting_right"
+                android:layout_toLeftOf="@+id/img_right3"
+                android:gravity="center"
+                android:text="0.0Byte"
+                android:textColor="@color/app_text_light"
+                android:textSize="@dimen/app_myself_tex" />
 
             <ImageView
                 android:id="@+id/img_right3"
@@ -160,14 +171,14 @@
 
             <Button
                 android:id="@+id/btn_outline"
-                android:layout_centerInParent="true"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="退出登陆"
-                android:layout_marginTop="40dp"
-                android:layout_marginRight="@dimen/app_myself_left_mar"
+                android:layout_centerInParent="true"
                 android:layout_marginLeft="@dimen/app_myself_left_mar"
-                android:background="@drawable/btn_out"/>
+                android:layout_marginRight="@dimen/app_myself_left_mar"
+                android:layout_marginTop="40dp"
+                android:background="@drawable/btn_out"
+                android:text="退出登陆" />
         </RelativeLayout>
 
     </LinearLayout>

@@ -304,7 +304,8 @@
                 android:id="@+id/lly_sc5"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:visibility="gone">
 
                 <ImageView
                     android:id="@+id/imgstate5"

@@ -8,6 +8,7 @@ import android.view.View;
 
 import com.adapter.MyCollectAdapter;
 import com.adapter.MyCustomeAdapterPager;
+import com.common.AboutActivitySy;
 import com.common.Token;
 import com.custom.PagerSlidingTabStrip;
 import com.entity.MyCusdtomEntity;
@@ -45,6 +46,7 @@ public class MyCustome extends LActivity {
     @Override
     protected void onLCreate(Bundle bundle) {
         setContentView(R.layout.activity_mycustome);
+        AboutActivitySy.getInstance().addActivity(this);
         myCustome = this;
         initBar();
         initData();

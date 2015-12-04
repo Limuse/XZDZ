@@ -1,5 +1,6 @@
 package com.activity;
 
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -12,17 +13,29 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
+import com.common.AboutActivitySy;
 import com.common.Bar;
+import com.common.Token;
 import com.entity.MyCusdtomEntity;
 import com.fragment.Vc_Dress;
 import com.fragment.Vc_Releaxe;
 import com.fragment.Vc_Suit;
+import com.handle.ActivityHandler;
 import com.leo.base.activity.LActivity;
+import com.leo.base.entity.LMessage;
+import com.leo.base.net.LReqEntity;
+import com.leo.base.util.L;
+import com.leo.base.util.LSharePreference;
 import com.leo.base.util.T;
 import com.xzdz.R;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -33,11 +46,10 @@ import cn.jpush.android.api.JPushInterface;
  * Created by huisou on 2015/11/13.
  */
 public class ViersonChanges extends LActivity {
-    public static ViersonChanges context;
     private String Type = "1";
     private List<MyCusdtomEntity.ListEntity> list = new ArrayList<>();
     private List<MyCusdtomEntity.ListEntity.ChildEntity> childlist = new ArrayList<>();
-    private List<MyCusdtomEntity.ListEntity.ChildEntity.childV> chilvv=new ArrayList<>();
+    private List<MyCusdtomEntity.ListEntity.ChildEntity.childV> chilvv = new ArrayList<>();
     @InjectView(R.id.relax)
     Button relax;
     @InjectView(R.id.suit)
@@ -70,11 +82,14 @@ public class ViersonChanges extends LActivity {
 
     private String hideTag;
 
+    public static ViersonChanges vChanges;
+    private String product_id = null;
 
     @Override
     protected void onLCreate(Bundle bundle) {
         setContentView(R.layout.activity_viersonchanges);
-        context = this;
+        AboutActivitySy.getInstance().addActivity(this);
+        vChanges = this;
         ButterKnife.inject(this);
         initBar();
         initData();
@@ -96,14 +111,26 @@ public class ViersonChanges extends LActivity {
 
     private void initData() {
         MyCusdtomEntity.ListEntity lentity = (MyCusdtomEntity.ListEntity) getIntent().getSerializableExtra("entity");
-            lentity.getId();
+        childlist = lentity.get_child();
+        lentity.getId();
         lentity.getPid();
         lentity.getTitle();
-        for(int i=0;i<lentity.get_child().size();i++){
-            chilvv=lentity.get_child().get(i).get_child();
+        //   L.e(lentity.getTitle());
+        for (int i = 0; i < childlist.size(); i++) {
+            if (childlist.get(i).getPid().equals(lentity.getId()) && childlist.get(i).getTitle().equals("版型")) {
+                chilvv = childlist.get(i).get_child();
+                LSharePreference.getInstance(this).setString("vsNumID", childlist.get(i).getId());
+                //   L.e(childlist.get(i).getTitle()+childlist.get(i).getId()+"ffffffffffff");
+            }
+
         }
 
         initView();
+    }
+
+    public List<MyCusdtomEntity.ListEntity.ChildEntity.childV> SendChildV() {
+        return chilvv;
+
     }
 
     public void setBg() {
@@ -117,6 +144,7 @@ public class ViersonChanges extends LActivity {
         suit.setTextColor(getResources().getColor(R.color.app_white));
 
     }
+
 
     private void initView() {
         vc_releaxe = new Vc_Releaxe();
@@ -192,7 +220,86 @@ public class ViersonChanges extends LActivity {
     }
 
 
-    public void save(View v) {
-        T.ss("保存");
+//    public void save(View v) {
+//        /**
+//         * type
+//         product_id
+//         cid_first
+//         cid_second
+//         part_id
+//         array_num
+//         */
+//        String parId = null;
+//        String TID = LSharePreference.getInstance(this).getString("tID", null);
+//        if (TID.equals("1")) {
+//            parId = Vc_Releaxe.getIntenceR.tsData();
+//        } else if (TID.equals("2")) {
+//            parId = Vc_Suit.getIntenteS.tsData();
+//        } else if (TID.equals("3")) {
+//            parId = Vc_Dress.getIntenceD.tsData();
+//        }
+//        String firstId = LSharePreference.getInstance(this).getString("cid_first", null);
+//        String secondId = LSharePreference.getInstance(this).getString("cid_second", null);
+//        Resources res = getResources();
+//        String url = res.getString(R.string.app_service_url)
+//                + "/app/product/preservation/sign/aggregation/?uuid="
+//                + Token.get(this) +
+//                "&type=" + Type +
+//                "&cid_first=" + firstId +
+//                "&cid_second=" + secondId +
+//                "&part_id=" + parId;
+//        LReqEntity entity = new LReqEntity(url);
+//        // Fragment用FragmentHandler/Activity用ActivityHandler
+//        ActivityHandler handler = new ActivityHandler(this);
+//        handler.startLoadingData(entity, 1);
+//        // T.ss("保存");
+//    }
+
+//    // 返回获取的网络数据
+//    public void onResultHandler(LMessage msg, int requestId) {
+//        super.onResultHandler(msg, requestId);
+//        if (msg != null) {
+//            if (requestId == 1) {
+//                getJsonData(msg.getStr());
+//            } else {
+//                T.ss("获取数据失败");
+//            }
+//        }
+//    }
+
+//    private void getJsonData(String data) {
+//        try {
+//            JSONObject jsonObject = new JSONObject(data);
+//            int code = jsonObject.getInt("status");
+//            if (code == 1) {
+//                JSONObject object = jsonObject.getJSONObject("list");
+//                product_id = object.getString("product_id");
+//                T.ss("已保存");
+//            } else {
+//                //  T.ss(jsonObject.getString("info").toString());
+//                //String longs = jsonObject.getString("info");
+////                if (longs.equals("请先登录")) {
+////                    LSharePreference.getInstance(this).setBoolean("login", false);
+////                    Intent intent = new Intent(this, LoginMain.class);
+////                    startActivity(intent);
+////                }
+//            }
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//        }
+//    }
+
+//    public String returnData() {
+//        String ProductId = null;
+//        if (product_id != null) {
+//            ProductId = product_id;
+//        }
+//        return ProductId;
+//    }
+
+    public ArrayList<MyCusdtomEntity.ListEntity.ChildEntity> retrnEntity() {
+        return (ArrayList) childlist;
     }
+
+
 }

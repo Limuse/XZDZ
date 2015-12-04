@@ -2,7 +2,6 @@ package com.fragment;
 
 import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.support.annotation.DrawableRes;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,23 +9,18 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.MyApplication;
-import com.entity.MyCusdtomEntity;
 import com.entity.VcEntity;
 import com.leo.base.activity.fragment.LFragment;
-import com.leo.base.util.L;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.assist.ImageScaleType;
 import com.nostra13.universalimageloader.core.display.FadeInBitmapDisplayer;
 import com.xzdz.R;
 
-import java.util.HashMap;
-import java.util.Map;
-
 /**
- * Created by huisou on 2015/11/11.
+ * Created by huisou on 2015/11/30.
  */
-public class Vc_pager extends LFragment {
+public class vc_pagerD extends LFragment {
     private VcEntity vcEntitys;
     private View total;
 
@@ -37,8 +31,7 @@ public class Vc_pager extends LFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         total = (ViewGroup) inflater.inflate(
-                R.layout.vc_pager_pager, null);
-
+                R.layout.vc_pager_pagerd, null);
         return total;
     }
 
@@ -50,8 +43,8 @@ public class Vc_pager extends LFragment {
     }
 
     private void initView() {
-        ImageView img = (ImageView) total.findViewById(R.id.fc);
-        TextView tv = (TextView) total.findViewById(R.id.tv_textr);
+        ImageView img = (ImageView) total.findViewById(R.id.fcd);
+        TextView tv = (TextView) total.findViewById(R.id.tv_textd);
         tv.setText(vcEntitys.getTitle());
         /**
          * 图片需要处理
@@ -62,13 +55,11 @@ public class Vc_pager extends LFragment {
         if (imageLoader == null) {
             imageLoader = MyApplication.getInstance().getImageLoader();
         }
+
         DisplayImageOptions options = new DisplayImageOptions.Builder().cacheInMemory(false)
                 .cacheOnDisk(true).bitmapConfig(Bitmap.Config.RGB_565)
                 .imageScaleType(ImageScaleType.EXACTLY_STRETCHED)
                 .build();
-
-        // L.e(vcEntitys.getThumbnail());
-
         imageLoader.displayImage(vcEntitys.getThumbnail(), img, options);
     }
 

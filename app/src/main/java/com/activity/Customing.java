@@ -10,6 +10,7 @@ import android.widget.ListView;
 
 import com.adapter.CustomingAdapter;
 import com.adapter.MyCollectAdapter;
+import com.common.AboutActivitySy;
 import com.common.Token;
 import com.entity.CustomingEntity;
 import com.entity.MyWorkedEntity;
@@ -41,6 +42,7 @@ public class Customing extends LActivity implements AdapterView.OnItemClickListe
     @Override
     protected void onLCreate(Bundle bundle) {
         setContentView(R.layout.activity_customing);
+        AboutActivitySy.getInstance().addActivity(this);
         initBar();
         initView();
     }
@@ -67,19 +69,10 @@ public class Customing extends LActivity implements AdapterView.OnItemClickListe
     }
 
     private void initData() {
-//        CustomingEntity entity = new CustomingEntity();
-//        entity.setNum("091674367");
-//        entity.setState("准备量体");
-//        entity.setTime("2015-10-23");
-//        entity.setTitle("量体印花西服");
-//        list.add(entity);
-
         Resources res = getResources();
-        final Map<String, String> map = new HashMap<>();
         String url = res.getString(R.string.app_service_url)
-                + "/app/order/orderlist/sign/aggregation/";
-        map.put("uuid", Token.get(this));
-        LReqEntity entity = new LReqEntity(url, map);
+                + "/app/order/orderlist/sign/aggregation/?"+"uuid="+Token.get(this);
+        LReqEntity entity = new LReqEntity(url);
         // Fragment用FragmentHandler/Activity用ActivityHandler
         ActivityHandler handler = new ActivityHandler(this);
         handler.startLoadingData(entity, 1);
@@ -152,7 +145,7 @@ public class Customing extends LActivity implements AdapterView.OnItemClickListe
         CustomingEntity cu = list.get(position);
         Intent intent = new Intent(this, CustomingState.class);
         intent.putExtra("state", cu.getState());
-        intent.putExtra("id", cu.getId());
+        //intent.putExtra("id", cu.getId());
         intent.putExtra("order_id", cu.getNum());
         startActivity(intent);
     }

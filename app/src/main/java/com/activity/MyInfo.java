@@ -441,12 +441,12 @@ public class MyInfo extends LActivity implements View.OnClickListener {
     private void picloade() {
 
         Map<String, String> map = new HashMap<String, String>();
-        map.put("pictures", img);// 头像
+//        map.put("pictures", img);// 头像
         //L.e(img);
         map.put("uuid", Token.get(this));
         Resources res = getResources();
         String url = res.getString(R.string.app_service_url)
-                + "/app/member/editavatar/sign/aggregation/";
+                + "/app/member/editavatar/sign/aggregation/?uuid="+Token.get(this);
         LReqEntity entity = new LReqEntity(url, map);
         ActivityHandler handler = new ActivityHandler(this);
         handler.startLoadingData(entity, 1);
@@ -478,11 +478,10 @@ public class MyInfo extends LActivity implements View.OnClickListener {
     private void sex() {
         if (!sexid.equals(null)) {
             Map<String, String> map = new HashMap<>();
-            //map.put("uuid", Token.get(/this));
             map.put("sex", sexid.trim());// 性别
             Resources res = getResources();
             String url = res.getString(R.string.app_service_url)
-                    + "/app/member/editsex/sign/aggregation/";
+                    + "/app/member/editsex/sign/aggregation/?uuid="+Token.get(this);
             LReqEntity entity = new LReqEntity(url, map);
             ActivityHandler handler = new ActivityHandler(this);
             handler.startLoadingData(entity, 2);
@@ -513,11 +512,10 @@ public class MyInfo extends LActivity implements View.OnClickListener {
     private void Btime() {
 
         Map<String, String> map = new HashMap<>();
-        map.put("uuid", Token.get(this));
         map.put("birthday", tv_brithday.getText().toString());// 生日
         Resources res = getResources();
         String url = res.getString(R.string.app_service_url)
-                + "/app/member/editbirthday/sign/aggregation/";
+                + "/app/member/editbirthday/sign/aggregation/?uuid="+Token.get(this);
         LReqEntity entity = new LReqEntity(url, map);
         ActivityHandler handler = new ActivityHandler(this);
         handler.startLoadingData(entity, 3);

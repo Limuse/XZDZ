@@ -70,6 +70,8 @@ public class MyC_Pants extends LFragment {
         btn_next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                LSharePreference.getInstance(getActivity()).setString("cid_first",
+                        entity.getId());
                 Intent intent = new Intent(getActivity(), ViersonChanges.class);
                 Bundle bundle = new Bundle();
                 bundle.putString("ids", entity.getId());
@@ -114,14 +116,15 @@ public class MyC_Pants extends LFragment {
     private void initData() {
         list = MyCustome.myCustome.SendList();
         for (int i = 0; i < list.size(); i++) {
-            MyCusdtomEntity.ListEntity listEntity = new MyCusdtomEntity.ListEntity();
-            listEntity.setId(list.get(i).getId());
-            listEntity.setTitle(list.get(i).getTitle());
-            listEntity.setPid(list.get(i).getPid());
-            listEntity.setFace_pic(list.get(i).getFace_pic());
-            listEntity.set_child(list.get(i).get_child());
-            if (list.get(i).getId().equals("2")) {
-                entity = listEntity;
+            MyCusdtomEntity.ListEntity listEntityp = new MyCusdtomEntity.ListEntity();
+            if (list.get(i).getTitle().equals("裤装")) {
+                listEntityp.setId(list.get(i).getId());
+                listEntityp.setTitle(list.get(i).getTitle());
+                listEntityp.setPid(list.get(i).getPid());
+                listEntityp.setFace_pic(list.get(i).getFace_pic());
+                listEntityp.set_child(list.get(i).get_child());
+                entity = listEntityp;
+              //  L.e(entity.getTitle()+entity.getPid()+entity.getId());
             }
         }
 //        L.e(entity.getFace_pic() + "ddddddddddd");

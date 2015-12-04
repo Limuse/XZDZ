@@ -86,11 +86,9 @@ public class MyCollect extends LActivity {
 
     private void initData() {
         Resources res = getResources();
-        final Map<String, String> map = new HashMap<>();
         String url = res.getString(R.string.app_service_url)
-                + "/app/article/articallist/sign/aggregation/";
-        map.put("uuid", Token.get(this));
-        LReqEntity entity = new LReqEntity(url, map);
+                + "/app/article/articallist/sign/aggregation/?uuid="+Token.get(this);
+        LReqEntity entity = new LReqEntity(url);
         // Fragment用FragmentHandler/Activity用ActivityHandler
         ActivityHandler handler = new ActivityHandler(this);
         handler.startLoadingData(entity, 1);

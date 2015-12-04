@@ -1,10 +1,7 @@
 package com.entity;
 
-import android.os.Parcel;
-import android.os.Parcelable;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -24,8 +21,7 @@ public class MyCusdtomEntity implements Serializable {
     }
 
 
-
-    public static class ListEntity implements Serializable{
+    public static class ListEntity implements Serializable {
         /**
          * id : 14
          * pid : 0
@@ -80,7 +76,7 @@ public class MyCusdtomEntity implements Serializable {
             return _child;
         }
 
-        public static class ChildEntity implements Serializable{
+        public static class ChildEntity implements Serializable {
             /**
              * id : 19
              * pid : 14
@@ -123,7 +119,6 @@ public class MyCusdtomEntity implements Serializable {
             }
 
 
-
             public String getId() {
                 return id;
             }
@@ -136,13 +131,13 @@ public class MyCusdtomEntity implements Serializable {
                 return title;
             }
 
-            public static class childV implements Serializable{
+            public static class childV implements Serializable {
                 /**
                  * id: 6
-                 pid: 4
-                 title: 休闲
-                 face_pic:
-                 _child:
+                 * pid: 4
+                 * title: 休闲
+                 * face_pic:
+                 * _child:
                  */
                 private String id;
                 private String pid;

@@ -14,6 +14,8 @@ import com.activity.MyCustome;
 import com.activity.ViersonChanges;
 import com.entity.MyCusdtomEntity;
 import com.leo.base.activity.fragment.LFragment;
+import com.leo.base.util.L;
+import com.leo.base.util.LSharePreference;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.display.FadeInBitmapDisplayer;
@@ -31,7 +33,7 @@ public class MyDCoat extends LFragment {
     private Button btn_next;
     private List<MyCusdtomEntity.ListEntity> list = new ArrayList<>();
     private MyCusdtomEntity.ListEntity entity = new MyCusdtomEntity.ListEntity();
-
+    private String ParentID;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,10 +58,12 @@ public class MyDCoat extends LFragment {
         btn_next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                LSharePreference.getInstance(getActivity()).setString("cid_first",
+                        entity.getId());
                 Intent intent = new Intent(getActivity(), ViersonChanges.class);
                 Bundle bundle = new Bundle();
                 bundle.putString("ids", entity.getId());
-                bundle.putSerializable("entity",  entity);
+                bundle.putSerializable("entity", entity);
                 intent.putExtras(bundle);
                 startActivity(intent);
             }
@@ -71,17 +75,20 @@ public class MyDCoat extends LFragment {
         list = MyCustome.myCustome.SendList();
         for (int i = 0; i < list.size(); i++) {
             MyCusdtomEntity.ListEntity listEntity = new MyCusdtomEntity.ListEntity();
-            listEntity.setId(list.get(i).getId());
-            listEntity.setTitle(list.get(i).getTitle());
-            listEntity.setPid(list.get(i).getPid());
-            listEntity.setFace_pic(list.get(i).getFace_pic());
-            listEntity.set_child(list.get(i).get_child());
-            if (list.get(i).getId().equals("3")) {
+            if (list.get(i).getTitle().equals("大衣")) {
+                listEntity.setId(list.get(i).getId());
+                listEntity.setTitle(list.get(i).getTitle());
+                listEntity.setPid(list.get(i).getPid());
+                listEntity.setFace_pic(list.get(i).getFace_pic());
+                listEntity.set_child(list.get(i).get_child());
                 entity = listEntity;
             }
+
+
         }
         imgs();
     }
+
     private void imgs() {
         /**
          * 图片需要处理

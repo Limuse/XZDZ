@@ -10,20 +10,19 @@
         android:orientation="vertical">
 
         <ImageView
-            android:id="@+id/fc"
+            android:id="@+id/fcd"
             android:layout_width="match_parent"
-            android:layout_height="320dp"
-             />
+            android:layout_height="320dp" />
 
         <TextView
-            android:id="@+id/tv_textr"
-            android:layout_below="@+id/fc"
+            android:id="@+id/tv_textd"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/fcd"
             android:layout_centerHorizontal="true"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="16dp"
-            android:text=""
+            android:text="单排一粒扣"
             android:textColor="@color/app_text_dark"
             android:textSize="@dimen/app_text_big" />
     </RelativeLayout>

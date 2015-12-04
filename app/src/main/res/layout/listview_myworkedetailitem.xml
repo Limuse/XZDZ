@@ -7,8 +7,8 @@
 
     <com.custom.CircleImageView
         android:id="@+id/detail_img"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
         android:layout_centerVertical="true"
         android:layout_marginLeft="@dimen/app_setting_right"
         android:src="@mipmap/title_img"
@@ -20,6 +20,7 @@
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_marginLeft="8dp"
+        android:layout_marginBottom="24dp"
         android:layout_toRightOf="@id/detail_img"
         android:orientation="vertical">
 
