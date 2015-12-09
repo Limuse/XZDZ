@@ -441,9 +441,9 @@ public class MyInfo extends LActivity implements View.OnClickListener {
     private void picloade() {
 
         Map<String, String> map = new HashMap<String, String>();
-//        map.put("pictures", img);// 头像
+        map.put("pictures", img);// 头像
         //L.e(img);
-        map.put("uuid", Token.get(this));
+       // map.put("uuid", Token.get(this));
         Resources res = getResources();
         String url = res.getString(R.string.app_service_url)
                 + "/app/member/editavatar/sign/aggregation/?uuid="+Token.get(this);

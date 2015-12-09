@@ -164,63 +164,19 @@ public class Set extends LActivity implements View.OnClickListener {
         }
         if (id == R.id.btn_outline) {
             //退出登录
-//            if (tr == false) {
-//                btn_out.setText("登录");
-//                loades();
-//            } else if (tr == true) {
-//                btn_out.setText("退出登录");
-//                loades();
-//            }
-        }
-    }
-
-
-    private void loades() {
-        Map<String, String> map = new HashMap<>();
-        map.put("uuid", Token.get(this));
-        Resources res = getResources();
-        String url = res.getString(R.string.app_service_url)
-                + "/huihao/member/logout/1/sign/aggregation/";
-        LReqEntity entity = new LReqEntity(url, map);
-        ActivityHandler handler = new ActivityHandler(this);
-        handler.startLoadingData(entity, 1);
-
-    }
-
-    // 返回获取的网络数据
-    public void onResultHandler(LMessage msg, int requestId) {
-        super.onResultHandler(msg, requestId);
-        if (msg != null) {
-            if (requestId == 1) {
-                getJsonData(msg.getStr());
-            } else {
-                T.ss("获取数据失败");
-            }
-        }
-    }
-
-    private void getJsonData(String data) {
-        try {
-            JSONObject jsonObject = new JSONObject(data);
-            int code = jsonObject.getInt("status");
-            if (code == 1) {
-                T.ss("退出成功！");
-                tr = false;
-                LSharePreference.getInstance(this).setBoolean("login", false);
+            if (tr == false) {
+                //btn_out.setText("退出登录");
+                // LSharePreference.getInstance(this).setBoolean("login", false);
+                Intent intent = new Intent(this, LoginMain.class);
+                startActivity(intent);
+            } else if (tr == true) {
                 btn_out.setText("登录");
-            } else {
-                T.ss(jsonObject.getString("info"));
-                String longs = jsonObject.getString("info");
-                if (longs.equals("请先登录")) {
-                    LSharePreference.getInstance(this).setBoolean("login", false);
-                    Intent intent = new Intent(this, LoginMain.class);
-                    startActivity(intent);
-                }
+                LSharePreference.getInstance(this).setBoolean("login", false);
+                tr = false;
             }
-        } catch (JSONException e) {
-            e.printStackTrace();
         }
     }
+
 
     private void getcache() {
         try {

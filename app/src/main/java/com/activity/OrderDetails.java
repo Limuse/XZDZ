@@ -305,16 +305,19 @@ public class OrderDetails extends LActivity implements View.OnClickListener {
                     ADDRESS = xaddr;
                     rl_lts.setVisibility(View.VISIBLE);
                     rl_lt.setVisibility(View.GONE);
-                }
-                if (ppppp.equals(null)) {
-                    tv_address.setText(ADDRESS);
+                    if (ppppp.equals(null)) {
+                        tv_address.setText(ADDRESS);
+                    } else {
+                        tv_address.setText(ppppp + ADDRESS);
+                    }
+                    tv_name.setText(NAME);
+                    tv_phone.setText(PHONE);
+                    tv_daytime.setText(DAYTIME);
+                    tv_year.setText(YEAR);
                 } else {
-                    tv_address.setText(ppppp + ADDRESS);
+                    T.ss("请完善量体信息！");
                 }
-                tv_name.setText(NAME);
-                tv_phone.setText(PHONE);
-                tv_daytime.setText(DAYTIME);
-                tv_year.setText(YEAR);
+
 
                 break;
             default:

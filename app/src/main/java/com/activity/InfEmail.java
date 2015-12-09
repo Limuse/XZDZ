@@ -73,7 +73,7 @@ public class InfEmail extends LActivity {
         String email = et_email.getText().toString();
 
         if (email.equals(null)) {
-            T.ss("昵称不能为空！");
+            T.ss("邮箱不能为空！");
         } else {
             Map<String, String> map = new HashMap<>();
             map.put("email", email);// 邮箱
@@ -84,7 +84,7 @@ public class InfEmail extends LActivity {
             LReqEntity entity = new LReqEntity(url, map);
             ActivityHandler handler = new ActivityHandler(this);
             handler.startLoadingData(entity, 1);
-            L.e(entity.toString());
+            //L.e(entity.toString());
         }
     }
 

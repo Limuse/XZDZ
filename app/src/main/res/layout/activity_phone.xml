@@ -20,12 +20,13 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="54dp"
-            android:textColor="@color/app_white"
-            android:text="更换"
             android:layout_alignParentRight="true"
             android:background="@drawable/btn_save"
+            android:onClick="change"
+            android:text="更换"
+            android:textColor="@color/app_white"
             android:textSize="16sp"
-            android:onClick="change"/>
+            android:visibility="gone" />
     </RelativeLayout>
 
     <View
